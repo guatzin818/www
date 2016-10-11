@@ -4,7 +4,7 @@
 
 We use 3 data set to conduct our comparison experiments. Details of data are list in the following table:
 
-| Data     |      Task     |  Link | #Data | #Feature| Comments|
+| Data     |      Task     |  Link | #Train_Set | #Feature| Comments|
 |----------|---------------|-------|-------|---------|---------|
 | Higgs    |  Binary classification | [link](https://archive.ics.uci.edu/ml/datasets/HIGGS) |10,500,000|28| use last 500,000 samples as test set  | 
 | Yahoo LTR|  Learning to rank      | [link](https://webscope.sandbox.yahoo.com/catalog.php?datatype=c)  |2,270,296|137| 	   set1.train as train, set1.test as test |
