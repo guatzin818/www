@@ -7,8 +7,8 @@ We use 3 data set to conduct our comparison experiments. Details of data are lis
 | Data     |      Task     |  Link | #Data | #Feature| Comments|
 |----------|---------------|-------|-------|---------|---------|
 | Higgs    |  Binary classification | [link](https://archive.ics.uci.edu/ml/datasets/HIGGS) |10,000,000|28| use last 500,000 samples as test set  | 
-| Yahoo LTR|  Learning to rank      | [link](https://webscope.sandbox.yahoo.com/catalog.php?datatype=c)  |~2,000,000|~140| 	   set1.train as train, set1.test as test |
-| MS LTR   |  Learning to rank      | [link](http://research.microsoft.com/en-us/projects/mslr/)|~473,000|~700| {S1,S2,S3} as train set, {S5} as test set |
+| Yahoo LTR|  Learning to rank      | [link](https://webscope.sandbox.yahoo.com/catalog.php?datatype=c)  |~2,000,000|137| 	   set1.train as train, set1.test as test |
+| MS LTR   |  Learning to rank      | [link](http://research.microsoft.com/en-us/projects/mslr/)|~473,000|700| {S1,S2,S3} as train set, {S5} as test set |
 
 ### Environment
 
