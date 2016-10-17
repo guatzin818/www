@@ -111,7 +111,7 @@ We found LightGBM has better accuracy than xgboost on all experiment data sets.
 
 #### Memory consumption
 
-We monitor ```RES``` while running training task. And we set ```two_round=true``` in LightGBM to reduce peak memory usage.
+We monitor ```RES``` while running training task. And we set ```two_round=true``` (Will increase data-loading time, but reduce peak memory usage, not affect training speed or accuracy) in LightGBM to reduce peak memory usage. 
 
 | Data      | xgboost | xgboost_approx| LightGBM|  
 |-----------|---------|-------------- |---------|
