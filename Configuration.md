@@ -67,7 +67,7 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
   * LightGBM will auto compress memory according ```max_bin```. For example, LightGBM will use ```uint8_t``` for feature value if ```max_bin=255```.
 * ```data_random_seed```, default=```1```, type=int
   * random seed for data partition in parallel learning(not include feature parallel).
-* ```data_has_label```, default=```true```, type=bool
+* ```data_has_label```, default=```true``` in training task, default=```false``` in prediction task, type=bool
   * Must be ```true``` in training task. For prediction task, should change this according to data file.
 * ```output_model```, default=```LightGBM_model.txt```, type=string, alias=```model_output```,```model_out```
   * file name of output model in training.
