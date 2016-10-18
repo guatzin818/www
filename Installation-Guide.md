@@ -21,6 +21,21 @@ cmake ..
 make -j 
 ```
 
+## OSX(Unsupported yet)
+
+LightGBM depends on OpenMP for compiling, which isn't supported by Apple Clang.
+
+Please use gcc/g++ instead. 
+
+Run following: 
+
+```
+brew install cmake gcc
+git clone --recursive https://github.com/Microsoft/LightGBM ; cd LightGBM
+mkdir build ; cd build
+cmake -DCMAKE_CXX_COMPILER=g++-6 .. 
+make -j 
+
 ## Build MPI Version
 
 The default build version of LightGBM is based on socket. LightGBM also support [MPI](https://en.wikipedia.org/wiki/Message_Passing_Interface). MPI is a high performance communication approach with [RDMA](https://en.wikipedia.org/wiki/Remote_direct_memory_access) supported. 
