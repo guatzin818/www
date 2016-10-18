@@ -188,4 +188,4 @@ For LambdaRank learning, it needs query information for training data. LightGBM 
 ...
 ```
 
-It means the first ```27``` data belong one query and next ```18``` belong another query, and so on.(**Note: data should order by query**) If name of data file is "train.txt", the query file should be named as "train.txt.query" and in same folder as the data file. And LightGBM will auto load query file if it exists.
+It means first ```27``` lines samples belong one query and next ```18``` lines belong to another, and so on.(**Note: data should order by query**) If name of data file is "train.txt", the query file should be named as "train.txt.query" and in same folder of training data. LightGBM will load query file automatically if it exists.
