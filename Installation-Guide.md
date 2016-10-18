@@ -30,7 +30,8 @@ Please use gcc/g++ instead.
 Run following: 
 
 ```
-brew install cmake gcc
+brew install cmake
+brew install gcc --without-multilib
 git clone --recursive https://github.com/Microsoft/LightGBM ; cd LightGBM
 mkdir build ; cd build
 cmake -DCMAKE_CXX_COMPILER=g++-6 .. 
