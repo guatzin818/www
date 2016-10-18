@@ -2,7 +2,7 @@ This is a page contains all parameters in LightGBM.
 
 ## Parameters format
 
-The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can be written both in config file and command line. For parameters in command line, it cannot have spaces before and after ```=```. For parameters in config file, one line can only contains one parameters, and can use ```#``` to comment. If one parameter appears in both command line and config file, LightGBM will use the parameter in command line.
+The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can be set both in config file and command line. By using command line, parameters should not have spaces before and after ```=```. By using config files, one line can only contains one parameter. you can using ```#``` to comment. If one parameter appears in both command line and config file, LightGBM will use the parameter in command line.
 
 ## Core Parameters
 
