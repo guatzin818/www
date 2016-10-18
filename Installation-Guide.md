@@ -35,6 +35,7 @@ git clone --recursive https://github.com/Microsoft/LightGBM ; cd LightGBM
 mkdir build ; cd build
 cmake -DCMAKE_CXX_COMPILER=g++-6 .. 
 make -j 
+```
 
 ## Build MPI Version
 
