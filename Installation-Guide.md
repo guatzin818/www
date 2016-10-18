@@ -21,7 +21,7 @@ cmake ..
 make -j 
 ```
 
-## OSX(Unsupported yet)
+## OSX
 
 LightGBM depends on OpenMP for compiling, which isn't supported by Apple Clang.
 
