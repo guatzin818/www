@@ -21,8 +21,6 @@ LightGBM uses the histogram based algorithms<sup>[3][4][5]</sup>, which bucketin
     * Can replace continuous values to discrete bins. If #bins is small, can use small data type, e.g. uint8_t, to store training data
     * Not need to store additional information for pre-sorting feature values
 * **Reduce communication cost for parallel learning**
-* **Easy to optimize for cache hit chance**, since different features access data in same order
-  * Pre-sorted based algorithm access data in different order for different features. It is not easy to optimize for cache.
 
 ## Sparse optimization
   * Only need O(#non_zero_data) to construct histogram for sparse features
