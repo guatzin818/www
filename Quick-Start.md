@@ -4,9 +4,9 @@ Follow the [Installation Guide](https://github.com/Microsoft/LightGBM/wiki/Insta
 
 ## Training data format 
 
-LightGBM support input data file with [CSV](https://en.wikipedia.org/wiki/Comma-separated_values), [TSV] (https://en.wikipedia.org/wiki/Tab-separated_values) and [LibSVM](https://www.csie.ntu.edu.tw/~cjlin/libsvm/) formats.
+LightGBM supports input data file with [CSV](https://en.wikipedia.org/wiki/Comma-separated_values), [TSV] (https://en.wikipedia.org/wiki/Tab-separated_values) and [LibSVM](https://www.csie.ntu.edu.tw/~cjlin/libsvm/) formats.
 
-Label is the data of first column, and there is not header in file.
+Label is the data of first column, and there is no header in the file.
 
 LightGBM also support weighted training, it needs an additional [weight data](https://github.com/Microsoft/LightGBM/wiki/Configuration#weight-data). And it needs an additional [query data](https://github.com/Microsoft/LightGBM/wiki/Configuration#query-data) for ranking task.
 
@@ -35,7 +35,7 @@ Some important parameters:
 * ```learning_rate```, default=```0.1```, type=double, alias=```shrinkage_rate```
   * shrinkage rate
 * ```num_leaves```, default=```127```, type=int, alias=```num_leaf```
-  * number of leaves for one tree
+  * number of leaves in one tree
 * ```tree_learner```, default=```serial```, type=enum, options=```serial```,```feature```,```data```
   * ```serial```, single machine tree learner
   * ```feature```, feature parallel tree learner
@@ -45,14 +45,14 @@ Some important parameters:
   * Number of threads for LightGBM. 
   * For the best speed, set this to the number of **real CPU cores**, not the number of threads (most CPU using [hyper-threading](https://en.wikipedia.org/wiki/Hyper-threading) to generate 2 threads per CPU core).
 * ```min_data_in_leaf ```, default=```100```, type=int
-  * number of minimal data for one leaves, important parameter to avoid over-fit
+  * number of minimal data for one leaves, an important parameter to avoid over-fit
 
-For complete parameters, please refer to [Parameters](https://github.com/Microsoft/LightGBM/wiki/Configuration).
+For all parameters, please refer to [Parameters](https://github.com/Microsoft/LightGBM/wiki/Configuration).
 
 
 ## Run LightGBM
 
-For windows:
+For Windows:
 ```
 lightgbm.exe config=your_config_file other_args ...
 ```
@@ -62,7 +62,7 @@ For unix:
 ./lightgbm config=your_config_file other_args ...
 ```
 
-Parameters can be both in config file and command line, and the parameters in command line has higher priority than in config file.
+Parameters can be both in the config file and command line, and the parameters in command line have higher priority than in config file.
 For example, following command line will keep 'num_trees=10' and ignore same parameter in config file.
 ```
 ./lightgbm config=train.conf num_trees=10
