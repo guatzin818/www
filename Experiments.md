@@ -2,7 +2,7 @@
 
 ### Experiment Data
 
-We use 3 data set to conduct our comparison experiments. Details of data are list in the following table:
+We use 3 data set to conduct our comparison experiments. Details of data are listed in the following table:
 
 | Data     |      Task     |  Link | #Train_Set | #Feature| Comments|
 |----------|---------------|-------|-------|---------|---------|
@@ -20,7 +20,7 @@ We use one Linux server as experiment platform, details are listed in the follow
 
 ### Baseline
 
-we use [xgboost](https://github.com/dmlc/xgboost) as baseline, and build version is latest version at 8 OCT 2016 [f9648ac](https://github.com/dmlc/xgboost/tree/f9648ac320ba9d9fb77c1b9bf091406b9b6b4086).
+We use [xgboost](https://github.com/dmlc/xgboost) as baseline, and build version is latest version at 8 OCT 2016 [f9648ac](https://github.com/dmlc/xgboost/tree/f9648ac320ba9d9fb77c1b9bf091406b9b6b4086).
 
 Both xgboost and LightGBM are built with OpenMP support.
 
@@ -61,7 +61,7 @@ We set up total 3 settings for experiments, the parameters of these settings are
  min_sum_hessian_in_leaf=100
  ```
 
-xgboost grows tree depth-wise and controls model complexiy by ```max_depth```. LightGBM uses leaf-wise algorithm instead and controls model complexity by ```num_leaves```. So we cannot compare them in the exact same model setting. For the tradeoff, we use xgboost with ```max_depth=8```, which will have max number leaves to 255, to compare with LightGBM with ```num_leves=255```. And xgboost_approx with ```sketch_eps=0.004``` will have #bins to 250, which is similar to default(255) in LightGBM.
+xgboost grows tree depth-wise and controls model complexity by ```max_depth```. LightGBM uses leaf-wise algorithm instead and controls model complexity by ```num_leaves```. So we cannot compare them in the exact same model setting. For the tradeoff, we use xgboost with ```max_depth=8```, which will have max number leaves to 255, to compare with LightGBM with ```num_leves=255```. And xgboost_approx with ```sketch_eps=0.004``` will have #bins to 250, which is similar to default(255) in LightGBM.
 
 Other parameters are default values.
 
@@ -71,7 +71,7 @@ Other parameters are default values.
 
 For speed comparison, we only run the training task, which is without any test or metric output. And we don't count the time for IO.
 
-Following table is the comparison of time cost:
+The following table is the comparison of time cost:
 
 | Data      |  xgboost| xgboost_approx |  LightGBM|  
 |-----------|---------|----------------|----------|
@@ -123,23 +123,23 @@ We monitor ```RES``` while running training task. And we set ```two_round=true``
 | Yahoo LTR | 1.907g  | 2.221g | **0.831g** | 
 | MS LTR    | 5.469g  | 5.600g | **0.745g** |
 
-LightGBM benefits from its histogram optimization algorithm, so it consumes much lower memories.
+LightGBM benefits from its histogram optimization algorithm, so it consumes much lower memory.
 
 ## Parallel Experiment
 
 ### Data
 
-We use a terabyte click log dataset to conduct parallel experiments. Details are list in following table:
+We use a terabyte click log dataset to conduct parallel experiments. Details are listed in following table:
 
 | Data     |      Task     |  Link | #Data | #Feature|
 |----------|---------------|-------|-------|---------|
 | Criteo    |  Binary classification | [link](http://labs.criteo.com/downloads/download-terabyte-click-logs/) |1,700,000,000|67|
 
-This data contains 13 integer features and 26 category features of 24 days click log. We statistic the CTR and count for these 26 category features from first ten days, then use next ten days’ data, which had been replaced the category features by the corresponding CTR and count, as training data. The processed training data has total 1.7 billions records and 67 features.
+This data contains 13 integer features and 26 category features of 24 days click log. We statistic the CTR and count for these 26 category features from the first ten days, then use next ten days’ data, which had been replaced the category features by the corresponding CTR and count, as training data. The processed training data hava total 1.7 billions records and 67 features.
 
 
 ### Environment
-We use 16 windows servers as experiment platform, details are list in following table:
+We use 16 windows servers as experiment platform, details are listed in following table:
 
 | OS     |      CPU     |  Memory | Network Adapter |
 |--------|--------------|---------|-----------------|
