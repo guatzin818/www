@@ -12,7 +12,7 @@ LightGBM use Visual Studio (2013 or higher) to build in Windows.
 
 ## Linux
 
-LightGBM use ***cmake*** to build in unix. Run following: 
+LightGBM use ***cmake*** to build in Unix. Run following: 
 
 ```
 git clone --recursive https://github.com/Microsoft/LightGBM ; cd LightGBM
@@ -42,7 +42,7 @@ make -j
 
 The default build version of LightGBM is based on socket. LightGBM also support [MPI](https://en.wikipedia.org/wiki/Message_Passing_Interface). MPI is a high performance communication approach with [RDMA](https://en.wikipedia.org/wiki/Remote_direct_memory_access) supported. 
 
-If you need to run parallel learning application with high performance communication, you can build the LightGBM with MPI support.
+If you need to run a parallel learning application with high performance communication, you can build the LightGBM with MPI support.
 
 ### Windows
 
