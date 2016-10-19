@@ -1,8 +1,8 @@
 This is a page contains all parameters in LightGBM.
 
-## Parameters format
+## Parameter format
 
-The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can be set both in config file and command line. By using command line, parameters should not have spaces before and after ```=```. By using config files, one line can only contains one parameter. you can using ```#``` to comment. If one parameter appears in both command line and config file, LightGBM will use the parameter in command line.
+The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can be set both in config file and command line. By using command line, parameters should not have spaces before and after ```=```. By using config files, one line can only contain one parameter. you can use ```#``` to comment. If one parameter appears in both command line and config file, LightGBM will use the parameter in command line.
 
 ## Core Parameters
 
@@ -25,7 +25,7 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
 * ```learning_rate```, default=```0.1```, type=double, alias=```shrinkage_rate```
   * shrinkage rate
 * ```num_leaves```, default=```127```, type=int, alias=```num_leaf```
-  * number of leaves for one tree
+  * number of leaves in one tree
 * ```tree_learner```, default=```serial```, type=enum, options=```serial```,```feature```,```data```
   * ```serial```, single machine tree learner
   * ```feature```, feature parallel tree learner
@@ -34,12 +34,12 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
 * ```num_threads```, default=OpenMP_default, type=int, alias=```num_thread```,```nthread```
   * Number of threads for LightGBM. 
   * For the best speed, set this to the number of **real CPU cores**, not the number of threads (most CPU using [hyper-threading](https://en.wikipedia.org/wiki/Hyper-threading) to generate 2 threads per CPU core).
-  * For parallel learning, should not use full CPU cores since this will cause poor performance for network.
+  * For parallel learning, should not use full CPU cores since this will cause poor performance for the network.
 
 ## Learning control parameters
 
 * ```min_data_in_leaf```, default=```100```, type=int, alias=```min_data_per_leaf``` , ```min_data```
-  * Minimal number of data in one leaf. can use this to deal with over-fit.
+  * Minimal number of data in one leaf. Can use this to deal with over-fit.
 * ```min_sum_hessian_in_leaf```, default=```10.0```, type=double, alias=```min_sum_hessian_per_leaf```, ```min_sum_hessian```, ```min_hessian```
   * Minimal sum hessian in one leaf. Like ```min_data_in_leaf```, can use this to deal with over-fit.
 * ```feature_fraction```, default=```1.0```, type=double, ```0.0 < feature_fraction < 1.0```, alias=```sub_feature```
@@ -79,26 +79,26 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
   * Set to ```true``` will use sigmoid(if needed, only effect for ```binary``` now) transform for prediction result.
   * Set to ```false``` will only predict the raw scores.
 * ```init_score```, default=```""```, type=string, alias=```input_init_score```
-  * file name of initial score file. LightGBM will use this score to start training.
+  * file name of the initial score file. LightGBM will use this score to start training.
   * only support train task.
-  * each line contains one score corresponding with data
+  * each line contains one score corresponding to the data
 * ```is_pre_partition```, default=```false```, type=bool
   * used for parallel learning(not include feature parallel).
-  * ```true``` if training data is pre-partitioned, and different machines using different partition.
+  * ```true``` if training data are pre-partitioned, and different machines using different partition.
 * ```is_sparse```, default=```true```, type=bool, alias=```is_enable_sparse```
   * used to enable/disable sparse optimization. Set to ```false``` to disable sparse optimization.
 * ```two_round```, default=```false```, type=bool, alias=```two_round_loading```,```use_two_round_loading```
-  * by default, LightGBM will map data file to memory and load features from memory. This will provide faster data loading speed. But it may out of memory when data file is very big.
+  * by default, LightGBM will map data file to memory and load features from memory. This will provide faster data loading speed. But it may out of memory when the data file is very big.
   * set this to ```true``` if data file is too big to fit in memory.
 * ```save_binary```, default=```false```, type=bool, alias=```is_save_binary```,```is_save_binary_file```
-  * set this to ```true``` will save data set(include validation data) to binary file. speed up the data loading speed for the next time.
+  * set this to ```true``` will save the data set(include validation data) to a binary file. Speed up the data loading speed for the next time.
 
 ## Objective parameters
 
 * ```sigmoid```, default=```1.0```, type=double
   * parameter for sigmoid function. Will be used in binary classification and lambdarank.
 * ```is_unbalance```, default=```false```, type=bool
-  * used in binary classification. Set this to ```true``` if training data is unbalance.
+  * used in binary classification. Set this to ```true``` if training data are unbalance.
 * ```max_position```, default=```20```, type=int
   * used in lambdarank, will optimize NDCG at this position.
 * ```label_gain```, default=```{0,1,3,7,15,31,63,...}```, type=multi-double
@@ -118,13 +118,13 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
 * ```metric_freq```, default=```1```, type=int
   * frequency for metric output
 * ```is_training_metric```, default=```false```, type=bool
-  * set this to true if need to output metric result for training
+  * set this to true if need to output metric result of training
 * ```ndcg_at```, default=```{1,2,3,4,5}```, type=multi-int, alias=```ndcg_eval_at```
   * NDCG evaluation position, separate by ```,```
 
 ## Network parameters
 
-Following parameters are used for parallel learning, and only used for base(socket) version. It is not need to set them for MPI version. 
+Following parameters are used for parallel learning, and only used for base(socket) version. It doesn't need to set them for MPI version. 
 
 * ```num_machines```, default=```1```, type=int, alias=```num_machine```
   * Used for parallel learning, the number of machines for parallel learning application
@@ -135,7 +135,7 @@ Following parameters are used for parallel learning, and only used for base(sock
   * Socket time-out in minutes.
 * ```machine_list_file```, default=```""```, type=string
   * File that list machines for this parallel learning application
-  * Each line contains one ip and one port for one machine. Format is ```ip port```, separate by space.
+  * Each line contains one IP and one port for one machine. The format is ```ip port```, separate by space.
 
 ## Tuning Parameters
 
@@ -166,7 +166,7 @@ Following parameters are used for parallel learning, and only used for base(sock
 ## Others
 
 ### Weight data
-LightGBM support weighted training. It use an additional file to store weight data, like the following:
+LightGBM support weighted training. It uses an additional file to store weight data, like the following:
 
 ```
 1.0
@@ -175,7 +175,7 @@ LightGBM support weighted training. It use an additional file to store weight da
 ...
 ```
 
-It means the weight of first data is ```1.0```, second is ```0.5```, and so on. The weight file is corresponded with training data file line by line, and has per weight per line. And if the name of data file is "train.txt", the weight file should be named as "train.txt.weight" and in same folder as the data file. And LightGBM will auto load weight file if it exists.
+It means the weight of first data is ```1.0```, second is ```0.5```, and so on. The weight file corresponds with training data file line by line, and has per weight per line. And if the name of data file is "train.txt", the weight file should be named as "train.txt.weight" and in the same folder as the data file. And LightGBM will auto load weight file if it exists.
 
 ### Query data
 
@@ -188,4 +188,4 @@ For LambdaRank learning, it needs query information for training data. LightGBM 
 ...
 ```
 
-It means first ```27``` lines samples belong one query and next ```18``` lines belong to another, and so on.(**Note: data should order by query**) If name of data file is "train.txt", the query file should be named as "train.txt.query" and in same folder of training data. LightGBM will load query file automatically if it exists.
+It means first ```27``` lines samples belong one query and next ```18``` lines belong to another, and so on.(**Note: data should order by query**) If name of data file is "train.txt", the query file should be named as "train.txt.query" and in same folder of training data. LightGBM will load the query file automatically if it exists.
