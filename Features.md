@@ -9,7 +9,7 @@ Many boosting tools use pre-sorted based algorithms<sup>[1][2]</sup>(e.g. defaul
 LightGBM uses the histogram based algorithms<sup>[3][4][5]</sup>, which bucketing continuous feature(attribute) values into discrete bins, to speed up training procedure and reduce memory usage. Following are advantages for histogram based algorithms:
 
 * **Reduce calculation cost of split gain**
-    * Pre-sorted based algorithms need O(#data) time calculation
+    * Pre-sorted based algorithms need O(#data) times calculation
     * Histogram based algorithms only need to calculate O(#bins) times, and #bins is far smaller than #data
         * It still needs O(#data) times to construct histogram, which only contain sum-up operation
 * **Only need to split data one time after finding best split point**
