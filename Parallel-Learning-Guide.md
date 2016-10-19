@@ -11,7 +11,7 @@ LightGBM provides 2 parallel learning algorithms now.
 |Data parallel   | tree_learner=data   |
 |Feature parallel| tree_learner=feature|
 
-These algorithms are suit for different scenarios, which is listed in following table:
+These algorithms are suited for different scenarios, which is listed in following table:
 
 |                     | #data is small| #data is large| 
 |---------------------|------------------|-----------------|
@@ -22,15 +22,15 @@ These algorithms are suit for different scenarios, which is listed in following 
 More details about these parallel algorithms can be found in [optimization in parallel learning](https://github.com/Microsoft/LightGBM/wiki/Features#optimization-in-parallel-learning).
 
 ## Build parallel version
-Default build version support parallel learning based on socket.
+Default build version support parallel learning based on the socket.
 
-If you need build parallel version with MPI support, please refer to [this](https://github.com/Microsoft/LightGBM/wiki/Installation-Guide#build-mpi-version).
+If you need to build parallel version with MPI support, please refer to [this](https://github.com/Microsoft/LightGBM/wiki/Installation-Guide#build-mpi-version).
 
 ## Preparation
 
 ### socket version
 
-It needs to collect IP of all machines that want to run parallel learning in and allocate one TCP port (assume 12345 here) for all machines, and change firewall rules to allow income of this port(12345). Then write these IP and ports in one file (assume mlist.txt), like following:
+It needs to collect IP of all machines that want to run parallel learning in and allocate one TCP port (assume 12345 here) for all machines, and change firewall rules to allow income of this port (12345). Then write these IP and ports in one file (assume mlist.txt), like following:
 
 ```
 machine1_ip 12345
