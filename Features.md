@@ -9,13 +9,13 @@ Many boosting tools use pre-sorted based algorithms<sup>[1][2]</sup>(e.g. defaul
 LightGBM uses the histogram based algorithms<sup>[3][4][5]</sup>, which bucketing continuous feature(attribute) values into discrete bins, to speed up training procedure and reduce memory usage. Following are advantages for histogram based algorithms:
 
 * **Reduce calculation cost of split gain**
-    * Pre-sorted based algorithms need O(#data) times calculation
+    * Pre-sorted based algorithms need O(#data) time calculation
     * Histogram based algorithms only need to calculate O(#bins) times, and #bins is far smaller than #data
-        * It still need O(#data) times to construct histogram, which only contain sum-up operation
+        * It still needs O(#data) times to construct histogram, which only contain sum-up operation
 * **Only need to split data one time after finding best split point**
-    * Pre-sorted based algorithms need to split data O(#features) times (since different features access data by different order)
+    * Pre-sorted based algorithms need to split data O(#features) times (since different features access data in different order)
 * **Use histogram subtraction for further speed-up**
-    * To get one leaf's histograms in binary tree, can use the histogram subtraction of its parent and its neighbor 
+    * To get one leaf's histograms in a binary tree, can use the histogram subtraction of its parent and its neighbor 
     * So it only need to construct histograms for one leaf (with smaller #data than its neighbor), then can get histograms of its neighbor by histogram subtraction with small cost( O(#bins) )
 * **Reduce Memory usage**
     * Can replace continuous values to discrete bins. If #bins is small, can use small data type, e.g. uint8_t, to store training data
@@ -38,7 +38,7 @@ When growing same #leaf, Leaf-wise algorithm can reduce more loss than level-wis
 
 ## Optimization in network communication
 
-It only need to use some collective communication algorithms, like "All reduce", "All gather" and "Reduce scatter", in parallel learning of LightGBM. LightGBM implement state-of-art algorithms described in this [paper](http://wwwi10.lrr.in.tum.de/~gerndt/home/Teaching/HPCSeminar/mpich_multi_coll.pdf)<sup>[6]</sup>. These collective communication algorithms can provide much better performance than point-to-point communication.
+It only needs to use some collective communication algorithms, like "All reduce", "All gather" and "Reduce scatter", in parallel learning of LightGBM. LightGBM implement state-of-art algorithms described in this [paper](http://wwwi10.lrr.in.tum.de/~gerndt/home/Teaching/HPCSeminar/mpich_multi_coll.pdf)<sup>[6]</sup>. These collective communication algorithms can provide much better performance than point-to-point communication.
 
 ## Optimization in parallel learning
 
@@ -47,12 +47,12 @@ LightGBM provides following parallel learning algorithms.
 ### Feature Parallel
 
 #### Traditional algorithm
-Feature parallel aim to parallel the "Find Best Split" in decision tree. The procedure of traditional feature parallel is:
+Feature parallel aim to parallel the "Find Best Split" in the decision tree. The procedure of traditional feature parallel is:
 
 1. Partition data vertically (different machines have different feature set)
 2. Workers find local best split point {feature, threshold} on local feature set
-3. Communicate local best splits with each other and get best one
-4. Worker with best split to perform split, then send split result of data to other workers
+3. Communicate local best splits with each other and get the best one
+4. Worker with best split to perform split, then send the split result of data to other workers
 5. Other workers split data according received data
 
 The shortage of traditional feature parallel:
@@ -62,15 +62,15 @@ The shortage of traditional feature parallel:
 
 #### Feature parallel in LightGBM
 
-Since feature parallel cannot speed up well when #data is large, we make a little change here: instead of partitioning data vertically, every worker hold the full data. Thus, LightGBM doesn't need to communicate for split result of data since every worker know how to split data. And #data won't be larger, so it is reasonable to hold full data in every machine.
+Since feature parallel cannot speed up well when #data is large, we make a little change here: instead of partitioning data vertically, every worker holds the full data. Thus, LightGBM doesn't need to communicate for split result of data since every worker know how to split data. And #data won't be larger, so it is reasonable to hold full data in every machine.
 
 The procedure of feature parallel in LightGBM:
 
 1. Workers find local best split point{feature, threshold} on local feature set
-2. Communicate local best splits with each other and get best one
+2. Communicate local best splits with each other and get the best one
 3. Perform best split
 
-However, this feature parallel algorithm still suffer from computation overhead for "split" when #data is large. So it will be better to use data parallel when #data is large.
+However, this feature parallel algorithm still suffers from computation overhead for "split" when #data is large. So it will be better to use data parallel when #data is large.
 
 ### Data Parallel
 
@@ -80,7 +80,7 @@ Data parallel aim to parallel the whole decision learning. The procedure of data
 1. Partition data horizontally 
 2. Workers use local data to construct local histograms 
 3. Merge global histograms from all local histograms.
-4. Find best split from merged global histograms then perform split
+4. Find best split from merged global histograms, then perform splits
 
 The shortage of traditional data parallel:
 
@@ -101,9 +101,9 @@ Above all, we reduce communication cost to O(0.5 * #feature* #bin) for data para
 
 Support following application:
 
-* regression, objective function is L2 loss
-* binary classification, objective function is logloss
-* lambdarank, objective is lambdarank with NDCG
+* regression, the objective function is L2 loss
+* binary classification, the objective function is logloss
+* lambdarank, the objective function is lambdarank with NDCG
 
 Support following metrics:
 
@@ -121,7 +121,7 @@ For more details, please refer to [Configuration](https://github.com/Microsoft/L
 * Bagging(sub-samples)
 * Column(feature) sub-sample
 * Continued train with input GBDT model
-* Continued train with input score file
+* Continued train with the input score file
 * Weighted training
 * Validation metric output during training
 * Multi validation data
