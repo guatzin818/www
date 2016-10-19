@@ -19,7 +19,7 @@ LightGBM uses the histogram based algorithms<sup>[3][4][5]</sup>, which bucketin
     * So it only need to construct histograms for one leaf (with smaller #data than its neighbor), then can get histograms of its neighbor by histogram subtraction with small cost( O(#bins) )
 * **Reduce Memory usage**
     * Can replace continuous values to discrete bins. If #bins is small, can use small data type, e.g. uint8_t, to store training data
-    * Not need to store additional information for pre-sorting feature values
+    * No need to store additional information for pre-sorting feature values
 * **Reduce communication cost for parallel learning**
 
 ## Sparse optimization
@@ -27,7 +27,7 @@ LightGBM uses the histogram based algorithms<sup>[3][4][5]</sup>, which bucketin
 
 ## Optimization in accuracy
 
-Most decision tree learning algorithms grow tree by level(depth)-wise, like the following:
+Most decision tree learning algorithms grow tree by level(depth)-wise, like the following image:
 
 [[image/level_wise.png]]
 
