@@ -138,7 +138,7 @@ For more details, please refer to [Configuration](https://github.com/Microsoft/L
 ## References
 [1] Mehta, Manish, Rakesh Agrawal, and Jorma Rissanen. "SLIQ: A fast scalable classifier for data mining." International Conference on Extending Database Technology. Springer Berlin Heidelberg, 1996.
 
-[2] Shafer, John, Rakesh Agrawal, and Manish Mehta. "SPRINT: A scalable parallel classi er for data mining." Proc. 1996 Int. Conf. Very Large Data Bases. 1996.
+[2] Shafer, John, Rakesh Agrawal, and Manish Mehta. "SPRINT: A scalable parallel classifier for data mining" Proc. 1996 Int. Conf. Very Large Data Bases. 1996.
 
 [3] Ranka, Sanjay, and V. Singh. "CLOUDS: A decision tree classifier for large datasets." Proceedings of the 4th Knowledge Discovery and Data Mining Conference. 1998.
 
