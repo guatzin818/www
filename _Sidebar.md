@@ -10,7 +10,7 @@
 * Multiverso applications
   * [Logistic Regression](https://github.com/Microsoft/multiverso/wiki/Logistic-Regression)
   * [Word Embedding](https://github.com/Microsoft/multiverso/wiki/Word-Embedding)
-  * [LightLDA]()
+  * [LightLDA](https://github.com/Microsoft/multiverso/wiki/LightLDA)
   * Deep Learning
     * [Torch](https://github.com/Microsoft/multiverso/wiki/Multiverso-Torch-Binding-Benchmark)
     * [Theano](https://github.com/Microsoft/multiverso/wiki/Multiverso-Python-Binding-Benchmark)
