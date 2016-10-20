@@ -7,8 +7,8 @@ We use 3 data set to conduct our comparison experiments. Details of data are lis
 | Data     |      Task     |  Link | #Train_Set | #Feature| Comments|
 |----------|---------------|-------|-------|---------|---------|
 | Higgs    |  Binary classification | [link](https://archive.ics.uci.edu/ml/datasets/HIGGS) |10,500,000|28| use last 500,000 samples as test set  | 
-| Yahoo LTR|  Learning to rank      | [link](https://webscope.sandbox.yahoo.com/catalog.php?datatype=c)  |2,270,296|137| 	   set1.train as train, set1.test as test |
-| MS LTR   |  Learning to rank      | [link](http://research.microsoft.com/en-us/projects/mslr/)|473,134|700| {S1,S2,S3} as train set, {S5} as test set |
+| Yahoo LTR|  Learning to rank      | [link](https://webscope.sandbox.yahoo.com/catalog.php?datatype=c)  	|473,134|700|   set1.train as train, set1.test as test |
+| MS LTR   |  Learning to rank      | [link](http://research.microsoft.com/en-us/projects/mslr/) |2,270,296|137| {S1,S2,S3} as train set, {S5} as test set |
 
 ### Environment
 
@@ -119,9 +119,9 @@ We monitor ```RES``` while running training task. And we set ```two_round=true``
 
 | Data      | xgboost | xgboost_approx| LightGBM|  
 |-----------|---------|-------------- |---------|
-| Higgs     | 4.853g  | 4.875g | **0.822g** | 
-| Yahoo LTR | 1.907g  | 2.221g | **0.831g** | 
-| MS LTR    | 5.469g  | 5.600g | **0.745g** |
+| Higgs     | 4.853GB  | 4.875GB | **0.822GB** | 
+| Yahoo LTR | 1.907GB  | 2.221GB | **0.831GB** | 
+| MS LTR    | 5.469GB  | 5.600GB | **0.745GB** |
 
 LightGBM benefits from its histogram optimization algorithm, so it consumes much lower memory.
 
