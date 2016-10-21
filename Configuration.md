@@ -58,6 +58,8 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
   * Note: To enable bagging, should set ```bagging_fraction``` as well
 * ```bagging_seed``` , default=```3```, type=int
   * Random seed for bagging.
+* ```early_stopping_round``` , default=```0```, type=int, alias=```early_stopping_rounds```,```early_stopping```
+  * Will stop training if one metric of one validation data doesn't improve in last ```early_stopping_round``` rounds.
 
 
 ## IO parameters
@@ -92,6 +94,8 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
   * set this to ```true``` if data file is too big to fit in memory.
 * ```save_binary```, default=```false```, type=bool, alias=```is_save_binary```,```is_save_binary_file```
   * set this to ```true``` will save the data set(include validation data) to a binary file. Speed up the data loading speed for the next time.
+* ```verbosity```, default=```1```, type=int, alias=```verbose```
+  * ```<0``` = Fatel, ```=0``` = Error(Warn), ```>0``` = Info
 
 ## Objective parameters
 
