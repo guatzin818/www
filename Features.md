@@ -118,7 +118,7 @@ For more details, please refer to [Configuration](https://github.com/Microsoft/L
 
 ## Other features
 
-* Bagging(sub-samples)
+* Bagging
 * Column(feature) sub-sample
 * Continued train with input GBDT model
 * Continued train with the input score file
@@ -126,6 +126,8 @@ For more details, please refer to [Configuration](https://github.com/Microsoft/L
 * Validation metric output during training
 * Multi validation data
 * Multi metrics
+* Early stopping
+* Prediction for leaf index
 
 For more details, please refer to [Configuration](https://github.com/Microsoft/LightGBM/wiki/Configuration).
 
