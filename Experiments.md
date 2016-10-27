@@ -20,7 +20,7 @@ We use one Linux server as experiment platform, details are listed in the follow
 
 ### Baseline
 
-We use [xgboost](https://github.com/dmlc/xgboost) as baseline, and build version is latest version at 8 OCT 2016 [f9648ac](https://github.com/dmlc/xgboost/tree/f9648ac320ba9d9fb77c1b9bf091406b9b6b4086).
+We use [xgboost](https://github.com/dmlc/xgboost) as baseline, and build version is latest version at 27 OCT 2016 [016ab89](https://github.com/dmlc/xgboost/tree/016ab89484e7a6313a7de11160d0c3370fc5c35d).
 
 Both xgboost and LightGBM are built with OpenMP support.
 
@@ -63,7 +63,7 @@ We set up total 3 settings for experiments, the parameters of these settings are
 
 xgboost grows tree depth-wise and controls model complexity by ```max_depth```. LightGBM uses leaf-wise algorithm instead and controls model complexity by ```num_leaves```. So we cannot compare them in the exact same model setting. For the tradeoff, we use xgboost with ```max_depth=8```, which will have max number leaves to 255, to compare with LightGBM with ```num_leves=255```. And xgboost_approx with ```sketch_eps=0.004``` will have #bins to 250, which is similar to default(255) in LightGBM.
 
-Other parameters are default values.
+Other parameters are default values. For the detailed experiments settings and output logs, please refer to this [repo](https://github.com/guolinke/boosting_tree_benchmarks). 
 
 ### Result
 
@@ -73,11 +73,11 @@ For speed comparison, we only run the training task, which is without any test o
 
 The following table is the comparison of time cost:
 
-| Data      |  xgboost| xgboost_approx |  LightGBM|  
-|-----------|---------|----------------|----------|
-| Higgs     | 4543s   |     2321s      | **383s** | 
-| Yahoo LTR | 702s    |     473s       | **176s** | 
-| MS LTR    | 1323s   |     1024s      | **265s** |
+| Data      |  xgboost| xgboost_approx |  LightGBM|
+|----|  ----| ---- |  ----|
+| Higgs|4604.09s |2142.72s |**360.77s** |
+| Yahoo LTR|704.925s |497.467s |**173.39s **|
+| MS LTR|1338.28s |1046.48s |**263.51s**|
 
 [[image/time_cost.png]]
 
@@ -89,27 +89,29 @@ For accuracy comparison, we use the accuracy on test data set to have a fair com
 
 Higgs's AUC:
 
-| Metric  | xgboost | xgboost_approx | LightGBM|  
-|---------|---------|----------------|---------|
-| AUC     | 0.8395  | 0.8405 | **0.8451**  | 
+| Metric      |  xgboost| xgboost_approx |  LightGBM|
+| ----------- |  -------| -------------- |  --------|
+| AUC|0.839528|0.840533|**0.845123**|
 
 NDCG at Yahoo LTR:
 
-| Metric    | xgboost | xgboost_approx| LightGBM|  
-|-----------|---------|-------------- |---------|
-| NDCG@1    | 0.7187  | 0.7180 | **0.7287**  | 
-| NDCG@3    | 0.7175  | 0.7277 | **0.7381**  | 
-| NDCG@5    | 0.7377  | 0.7380 | **0.7557**  | 
-| NDCG@10   | 0.7804  | 0.7809 | **0.7961**  | 
+| Metric      |  xgboost| xgboost_approx |  LightGBM|
+| ----------- |  -------| -------------- |  --------|
+| NDCG@1|0.721213|0.720535|**0.731828**|
+| NDCG@3|0.721025|0.719632|**0.738793**|
+| NDCG@5|0.740316|0.739363|**0.756369**|
+| NDCG@10|0.782226|0.781775|**0.796572**|
+
 
 NDCG at MS LTR:
 
-| Metric    | xgboost | xgboost_approx| LightGBM|  
-|-----------|---------|-------------- |---------|
-| NDCG@1    | 0.4825  | 0.4824 | **0.5182**  | 
-| NDCG@3    | 0.4662  | 0.4685 | **0.5041**  | 
-| NDCG@5    | 0.4720  | 0.4735 | **0.5092**  | 
-| NDCG@10   | 0.4914  | 0.4925 | **0.5259**  | 
+
+| Metric      |  xgboost| xgboost_approx |  LightGBM|
+| ----------- |  -------| -------------- |  --------|
+| NDCG@1|0.488128|0.480611|**0.521854**|
+| NDCG@3|0.472706|0.470275|**0.504671**|
+| NDCG@5|0.476245|0.474441|**0.510153**|
+| NDCG@10|0.495091|0.493346|**0.52666**|
 
 We found LightGBM has better accuracy than xgboost on all experiment data sets.
 
