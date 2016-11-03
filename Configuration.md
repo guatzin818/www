@@ -96,6 +96,20 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
   * set this to ```true``` will save the data set(include validation data) to a binary file. Speed up the data loading speed for the next time.
 * ```verbosity```, default=```1```, type=int, alias=```verbose```
   * ```<0``` = Fatel, ```=0``` = Error(Warn), ```>0``` = Info
+* ```header```, default=```false```, type=bool, alias=```has_header```
+  * ```true``` if input data has header
+* ```label```, default=```""```, type=string, alias=```label_column```
+  * specific the label column
+  * Use number for index, e.g. ```label=10``` means 10-th column is the label
+  * Add a prefix ```name:``` for column name, e.g. ```label=name:is_click```
+* ```weight```, default=```""```, type=string, alias=```weight_column```
+  * specific the weight column
+  * Use number for index, e.g. ```weight=10``` means 10-th column is the weight
+  * Add a prefix ```name:``` for column name, e.g. ```weight =name:weight```
+* ```query```, default=```""```, type=string, alias=```query_column```,```group```,```group_column```
+  * specific the query/group id column
+  * Use number for index, e.g. ```query=10``` means 10-th column is the query id
+  * Add a prefix ```name:``` for column name, e.g. ```weight =name:query_id```
 
 ## Objective parameters
 
