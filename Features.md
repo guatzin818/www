@@ -103,6 +103,7 @@ Support following application:
 
 * regression, the objective function is L2 loss
 * binary classification, the objective function is logloss
+* multi classification
 * lambdarank, the objective function is lambdarank with NDCG
 
 Support following metrics:
@@ -113,6 +114,8 @@ Support following metrics:
 * Classification Error rate
 * AUC
 * NDCG
+* Multi class log loss
+* Multi error rate
 
 For more details, please refer to [Configuration](https://github.com/Microsoft/LightGBM/wiki/Configuration).
 
