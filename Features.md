@@ -115,7 +115,7 @@ Support following metrics:
 * AUC
 * NDCG
 * Multi class log loss
-* Multi error rate
+* Multi class error rate
 
 For more details, please refer to [Configuration](https://github.com/Microsoft/LightGBM/wiki/Configuration).
 
