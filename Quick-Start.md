@@ -10,6 +10,14 @@ Label is the data of first column, and there is no header in the file.
 
 LightGBM also support weighted training, it needs an additional [weight data](https://github.com/Microsoft/LightGBM/wiki/Configuration#weight-data). And it needs an additional [query data](https://github.com/Microsoft/LightGBM/wiki/Configuration#query-data) for ranking task.
 
+update 11/3/2016:
+1. support input with header now
+2. can specific label column, weight column and query/group id column. Both index and column are supported
+3. can specific a list of ignored columns
+
+For the detailed usage, please refer to [Configuration]((https://github.com/Microsoft/LightGBM/wiki/Configuration).
+
+
 ## Parameter quick look
 
 The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can be in both config file and command line.
