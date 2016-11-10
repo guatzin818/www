@@ -175,7 +175,7 @@ Following parameters are used for parallel learning, and only used for base(sock
 ### Deal with over-fitting
 
 * Use small ```max_bin```
-* Use small ```num_leave```
+* Use small ```num_leaves```
 * Use ```min_data_in_leaf``` and ```min_sum_hessian_in_leaf```
 * Use bagging by set ```bagging_fraction``` and ```bagging_freq``` 
 * Use feature sub-sampling by set ```feature_fraction```
