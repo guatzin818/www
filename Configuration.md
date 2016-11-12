@@ -72,6 +72,10 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
   * l2 regularization 
 * ```min_gain_to_split``` , default=```0```, type=double
   * The minimal gain to perform split 
+* ```drop_rate```, default=```0.01```, type=double
+  * only used in ```dart```, will drop ```drop_rate*current_num_models``` before boosting. 
+* ```drop_seed```, default=```4```, type=int
+  * only used in ```dart```, used to random seed to choose dropping models.
 
 
 ## IO parameters
