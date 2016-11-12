@@ -1,5 +1,7 @@
 ## Comparison Experiment
 
+For the detailed experiment scripts and output logs, please refer to this [repo](https://github.com/guolinke/boosting_tree_benchmarks). 
+
 ### Experiment Data
 
 We use 3 data set to conduct our comparison experiments. Details of data are listed in the following table:
@@ -64,8 +66,6 @@ We set up total 3 settings for experiments, the parameters of these settings are
 xgboost grows tree depth-wise and controls model complexity by ```max_depth```. LightGBM uses leaf-wise algorithm instead and controls model complexity by ```num_leaves```. So we cannot compare them in the exact same model setting. For the tradeoff, we use xgboost with ```max_depth=8```, which will have max number leaves to 255, to compare with LightGBM with ```num_leves=255```. And xgboost_approx with ```sketch_eps=0.004``` will have #bins to 250, which is similar to default(255) in LightGBM.
 
 Other parameters are default values. 
-
-For the detailed experiment scripts and output logs, please refer to this [repo](https://github.com/guolinke/boosting_tree_benchmarks). 
 
 ### Result
 
