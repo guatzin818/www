@@ -15,6 +15,9 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
   * ```regression```, regression application
   * ```binary```, binary classification application 
   * ```lambdarank```, lambdarank application
+* ```boosting```, default=```gbdt```, type=enum, options=```gbdt```,```dart```, alias=```boost```,```boosting_type```
+  * ```gbdt```, traditional Gradient Boosting Decision Tree 
+  * ```dart```, [Dropouts meet Multiple Additive Regression Trees](https://arxiv.org/abs/1505.01866)
 * ```data```, default=```""```, type=string, alias=```train```,```train_data```
   * training data, LightGBM will train from this data
 * ```valid```, default=```""```, type=multi-string, alias=```test```,```valid_data```,```test_data```
@@ -26,6 +29,9 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
   * shrinkage rate
 * ```num_leaves```, default=```127```, type=int, alias=```num_leaf```
   * number of leaves in one tree
+* ```max_depth```, default=```-1```, type=int
+  * Limit the max depth for tree model. This is used to deal with overfit when #data is small. Tree still grow by leaf-wise. 
+  * ```< 0``` means no limit 
 * ```tree_learner```, default=```serial```, type=enum, options=```serial```,```feature```,```data```
   * ```serial```, single machine tree learner
   * ```feature```, feature parallel tree learner
@@ -60,6 +66,12 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
   * Random seed for bagging.
 * ```early_stopping_round``` , default=```0```, type=int, alias=```early_stopping_rounds```,```early_stopping```
   * Will stop training if one metric of one validation data doesn't improve in last ```early_stopping_round``` rounds.
+* ```lambda_l1``` , default=```0```, type=double
+  * l1 regularization 
+* ```lambda_l2``` , default=```0```, type=double
+  * l2 regularization 
+* ```min_gain_to_split``` , default=```0```, type=double
+  * The minimal gain to perform split 
 
 
 ## IO parameters
@@ -77,13 +89,6 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
   * for train task, will continued train from this model.
 * ```output_result```, default=```LightGBM_predict_result.txt```, type=string, alias=```predict_result```,```prediction_result```
   * file name of prediction result in prediction task.
-* ```is_sigmoid```, default=```true```, type=bool
-  * Set to ```true``` will use sigmoid(if needed, only effect for ```binary``` now) transform for prediction result.
-  * Set to ```false``` will only predict the raw scores.
-* ```init_score```, default=```""```, type=string, alias=```input_init_score```
-  * file name of the initial score file. LightGBM will use this score to start training.
-  * only support train task.
-  * each line contains one score corresponding to the data
 * ```is_pre_partition```, default=```false```, type=bool
   * used for parallel learning(not include feature parallel).
   * ```true``` if training data are pre-partitioned, and different machines using different partition.
@@ -109,7 +114,23 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
 * ```query```, default=```""```, type=string, alias=```query_column```,```group```,```group_column```
   * specific the query/group id column
   * Use number for index, e.g. ```query=10``` means 10-th column is the query id
-  * Add a prefix ```name:``` for column name, e.g. ```weight =name:query_id```
+  * Add a prefix ```name:``` for column name, e.g. ```query=name:query_id```
+  * Note: Data should group by query_id
+* ```is_predict_raw_score```, default=```false```, type=bool, alias=```predict_raw_score```
+  * only used in prediction task
+  * Set to ```true``` will only predict the raw scores.
+  * Set to ```false``` will transformed score
+* ```is_predict_leaf_index ```, default=```false```, type=bool, alias=```predict_leaf_index ```
+  * only used in prediction task
+  * Set to ```true``` to predict with leaf index of all trees
+* ```bin_construct_sample_cnt```, default=```50000```, type=int
+  * Number of data that sampled to construct histogram bins.
+  * Will give better training result when set this larger. But will increase data loading time.
+  * Set this to larger value if data is very sparse.
+* ```num_model_predict```, default=```-1```, type=int
+  * only used in prediction task, used to how many models will be used in prediction. 
+  * ```< 0``` means no limit
+
 
 ## Objective parameters
 
@@ -122,6 +143,8 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
 * ```label_gain```, default=```{0,1,3,7,15,31,63,...}```, type=multi-double
   * used in lambdarank, relevant gain for labels. For example, the gain of label ```2``` is ```3``` if using default label gains.
   * Separate by ```,```
+* ```num_class```, default=```1```, type=int, alias=```num_classes```
+  * only used in multi-class classification
 
 ## Metric parameters
 
@@ -171,6 +194,7 @@ Following parameters are used for parallel learning, and only used for base(sock
 * Use small ```learning_rate``` with large ```num_iterations```
 * Use large ```num_leave```(may over-fitting)
 * Use bigger training data
+* Try ```dart```
 
 ### Deal with over-fitting
 
@@ -180,8 +204,23 @@ Following parameters are used for parallel learning, and only used for base(sock
 * Use bagging by set ```bagging_fraction``` and ```bagging_freq``` 
 * Use feature sub-sampling by set ```feature_fraction```
 * Use bigger training data
+* Try ```lambda_l1```, ```lambda_l2``` and ```min_gain_to_split``` to regularization
+* Try ```max_depth``` to avoid growing deep tree 
 
 ## Others
+
+### Continued training with input score
+LightGBM support continued train with initial score. It uses an additional file to store these initial score, like the following:
+
+```
+0.5
+-0.1
+0.9
+...
+```
+
+It means the initial score of first data is ```0.5```, second is ```-0.1```, and so on. The initial score file corresponds with data file line by line, and has per score per line. And if the name of data file is "train.txt", the weight file should be named as "train.txt.init" and in the same folder as the data file. And LightGBM will auto load initial score  file if it exists. 
+
 
 ### Weight data
 LightGBM support weighted training. It uses an additional file to store weight data, like the following:
@@ -193,7 +232,10 @@ LightGBM support weighted training. It uses an additional file to store weight d
 ...
 ```
 
-It means the weight of first data is ```1.0```, second is ```0.5```, and so on. The weight file corresponds with training data file line by line, and has per weight per line. And if the name of data file is "train.txt", the weight file should be named as "train.txt.weight" and in the same folder as the data file. And LightGBM will auto load weight file if it exists.
+It means the weight of first data is ```1.0```, second is ```0.5```, and so on. The weight file corresponds with data file line by line, and has per weight per line. And if the name of data file is "train.txt", the weight file should be named as "train.txt.weight" and in the same folder as the data file. And LightGBM will auto load weight file if it exists.
+
+update:
+You can specific weight column in data file now. Please refer to parameter ```weight``` in above.
 
 ### Query data
 
@@ -207,3 +249,6 @@ For LambdaRank learning, it needs query information for training data. LightGBM 
 ```
 
 It means first ```27``` lines samples belong one query and next ```18``` lines belong to another, and so on.(**Note: data should order by query**) If name of data file is "train.txt", the query file should be named as "train.txt.query" and in same folder of training data. LightGBM will load the query file automatically if it exists.
+
+update:
+You can specific query/group id in data file now. Please refer to parameter ```group``` in above.
