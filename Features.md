@@ -120,7 +120,7 @@ Support following metrics:
 For more details, please refer to [Configuration](https://github.com/Microsoft/LightGBM/wiki/Configuration).
 
 ## Other features
-* Limit max_depth of tree whiling grows tree leaf-wise
+* Limit max_depth of tree while grows tree leaf-wise
 * [DART](https://arxiv.org/abs/1505.01866)
 * L1/L2 regularization
 * Bagging
