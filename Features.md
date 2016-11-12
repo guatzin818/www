@@ -120,7 +120,8 @@ Support following metrics:
 For more details, please refer to [Configuration](https://github.com/Microsoft/LightGBM/wiki/Configuration).
 
 ## Other features
-
+* [DART](https://arxiv.org/abs/1505.01866)
+* L1/L2 regularization
 * Bagging
 * Column(feature) sub-sample
 * Continued train with input GBDT model
