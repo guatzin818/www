@@ -30,10 +30,14 @@ Some important parameters:
 * ```task```, default=```train```, type=enum, options=```train```,```prediction```
   * ```train``` for training
   * ```prediction``` for prediction.
-* ```application```, default=```regression```, type=enum, options=```regression```,```binary```,```lambdarank```, alias=```objective```,```app```
+* ```application```, default=```regression```, type=enum, options=```regression```,```binary```,```lambdarank```,```multiclass```, alias=```objective```,```app```
   * ```regression```, regression application
   * ```binary```, binary classification application 
   * ```lambdarank```, lambdarank application
+  * ```multiclass```, multi-class classification application, should set ```num_class``` as well
+* ```boosting```, default=```gbdt```, type=enum, options=```gbdt```,```dart```, alias=```boost```,```boosting_type```
+  * ```gbdt```, traditional Gradient Boosting Decision Tree 
+  * ```dart```, [Dropouts meet Multiple Additive Regression Trees](https://arxiv.org/abs/1505.01866)
 * ```data```, default=```""```, type=string, alias=```train```,```train_data```
   * training data, LightGBM will train from this data
 * ```valid```, default=```""```, type=multi-string, alias=```test```,```valid_data```,```test_data```
@@ -53,8 +57,14 @@ Some important parameters:
 * ```num_threads```, default=OpenMP_default, type=int, alias=```num_thread```,```nthread```
   * Number of threads for LightGBM. 
   * For the best speed, set this to the number of **real CPU cores**, not the number of threads (most CPU using [hyper-threading](https://en.wikipedia.org/wiki/Hyper-threading) to generate 2 threads per CPU core).
-* ```min_data_in_leaf ```, default=```100```, type=int
-  * number of minimal data for one leaves, an important parameter to avoid over-fit
+  * For parallel learning, should not use full CPU cores since this will cause poor performance for the network.
+* ```max_depth```, default=```-1```, type=int
+  * Limit the max depth for tree model. This is used to deal with overfit when #data is small. Tree still grow by leaf-wise. 
+  * ```< 0``` means no limit 
+* ```min_data_in_leaf```, default=```100```, type=int, alias=```min_data_per_leaf``` , ```min_data```
+  * Minimal number of data in one leaf. Can use this to deal with over-fit.
+* ```min_sum_hessian_in_leaf```, default=```10.0```, type=double, alias=```min_sum_hessian_per_leaf```, ```min_sum_hessian```, ```min_hessian```
+  * Minimal sum hessian in one leaf. Like ```min_data_in_leaf```, can use this to deal with over-fit.
 
 For all parameters, please refer to [Parameters](https://github.com/Microsoft/LightGBM/wiki/Configuration).
 
