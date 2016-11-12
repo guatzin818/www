@@ -30,9 +30,6 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
   * shrinkage rate
 * ```num_leaves```, default=```127```, type=int, alias=```num_leaf```
   * number of leaves in one tree
-* ```max_depth```, default=```-1```, type=int
-  * Limit the max depth for tree model. This is used to deal with overfit when #data is small. Tree still grow by leaf-wise. 
-  * ```< 0``` means no limit 
 * ```tree_learner```, default=```serial```, type=enum, options=```serial```,```feature```,```data```
   * ```serial```, single machine tree learner
   * ```feature```, feature parallel tree learner
@@ -44,7 +41,9 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
   * For parallel learning, should not use full CPU cores since this will cause poor performance for the network.
 
 ## Learning control parameters
-
+* ```max_depth```, default=```-1```, type=int
+  * Limit the max depth for tree model. This is used to deal with overfit when #data is small. Tree still grow by leaf-wise. 
+  * ```< 0``` means no limit 
 * ```min_data_in_leaf```, default=```100```, type=int, alias=```min_data_per_leaf``` , ```min_data```
   * Minimal number of data in one leaf. Can use this to deal with over-fit.
 * ```min_sum_hessian_in_leaf```, default=```10.0```, type=double, alias=```min_sum_hessian_per_leaf```, ```min_sum_hessian```, ```min_hessian```
