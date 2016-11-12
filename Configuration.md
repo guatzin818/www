@@ -11,10 +11,11 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
 * ```task```, default=```train```, type=enum, options=```train```,```prediction```
   * ```train``` for training
   * ```prediction``` for prediction.
-* ```application```, default=```regression```, type=enum, options=```regression```,```binary```,```lambdarank```, alias=```objective```,```app```
+* ```application```, default=```regression```, type=enum, options=```regression```,```binary```,```lambdarank```,```multiclass```, alias=```objective```,```app```
   * ```regression```, regression application
   * ```binary```, binary classification application 
   * ```lambdarank```, lambdarank application
+  * ```multiclass```, multi-class classification application, should set ```num_class``` as well
 * ```boosting```, default=```gbdt```, type=enum, options=```gbdt```,```dart```, alias=```boost```,```boosting_type```
   * ```gbdt```, traditional Gradient Boosting Decision Tree 
   * ```dart```, [Dropouts meet Multiple Additive Regression Trees](https://arxiv.org/abs/1505.01866)
@@ -155,6 +156,8 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
   * ```auc```, [AUC](https://en.wikipedia.org/wiki/Area_under_the_curve_(pharmacokinetics))
   * ```binary_logloss```, [log loss](https://www.kaggle.com/wiki/LogarithmicLoss)
   * ```binary_error```. For one sample ```0``` for correct classification, ```1``` for error classification.
+  * ```multi_logloss```, log loss for mulit-class classification
+  * ```multi_error```. error rate for mulit-class classification
   * Support multi metrics, separate by ```,```
 * ```metric_freq```, default=```1```, type=int
   * frequency for metric output
