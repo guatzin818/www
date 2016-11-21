@@ -10,6 +10,16 @@ LightGBM use Visual Studio (2013 or higher) to build in Windows.
 4. Press ```Ctrl+Shift+B``` to build.
 5. The exe file is in ```./windows/x64/Release/``` after built.
 
+Upadate:
+Use MinGW:
+```
+git clone --recursive https://github.com/Microsoft/LightGBM
+cd LightGBM
+cmake -G "MinGW Makefiles" .
+mingw32-make.exe -j
+```
+
+
 ## Linux
 
 LightGBM use ***cmake*** to build in Unix. Run following: 
@@ -56,6 +66,7 @@ Then:
 4. Press ```Ctrl+Shift+B``` to build.
 5. The exe file is in ```./windows/x64/Release_mpi/``` after built.
 
+Note: Doesn't support build mpi version by MinGW due to the miss of MPI Library in MinGW.
 ### Linux
 
 You need to install [OpenMPI](https://www.open-mpi.org/) first.
