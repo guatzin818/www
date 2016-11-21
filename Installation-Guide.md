@@ -10,7 +10,6 @@ LightGBM use Visual Studio (2013 or higher) to build in Windows.
 4. Press ```Ctrl+Shift+B``` to build.
 5. The exe file is in ```./windows/x64/Release/``` after built.
 
-Upadate:
 Use MinGW:
 ```
 git clone --recursive https://github.com/Microsoft/LightGBM
