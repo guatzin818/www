@@ -225,7 +225,7 @@ LightGBM support continued train with initial score. It uses an additional file 
 ...
 ```
 
-It means the initial score of first data is ```0.5```, second is ```-0.1```, and so on. The initial score file corresponds with data file line by line, and has per score per line. And if the name of data file is "train.txt", the weight file should be named as "train.txt.init" and in the same folder as the data file. And LightGBM will auto load initial score  file if it exists. 
+It means the initial score of first data is ```0.5```, second is ```-0.1```, and so on. The initial score file corresponds with data file line by line, and has per score per line. And if the name of data file is "train.txt", the initial score file should be named as "train.txt.init" and in the same folder as the data file. And LightGBM will auto load initial score file if it exists. 
 
 
 ### Weight data
