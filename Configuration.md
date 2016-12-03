@@ -109,17 +109,18 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
   * ```true``` if input data has header
 * ```label```, default=```""```, type=string, alias=```label_column```
   * specific the label column
-  * Use number for index, e.g. ```label=10``` means 10-th column is the label
+  * Use number for index, e.g. ```label=0``` means column_0 is the label
   * Add a prefix ```name:``` for column name, e.g. ```label=name:is_click```
 * ```weight```, default=```""```, type=string, alias=```weight_column```
   * specific the weight column
-  * Use number for index, e.g. ```weight=10``` means 10-th column is the weight
+  * Use number for index, e.g. ```weight=0``` means column_0 is the weight
   * Add a prefix ```name:``` for column name, e.g. ```weight =name:weight```
+  * Note: Index start from ```0```. And it doesn't count the label column when passing type is Index. e.g. when label is  column_0, and weight is column_1, the correct parameter is ```weight=0```.
 * ```query```, default=```""```, type=string, alias=```query_column```,```group```,```group_column```
   * specific the query/group id column
-  * Use number for index, e.g. ```query=10``` means 10-th column is the query id
+  * Use number for index, e.g. ```query=0``` means column_0 is the query id
   * Add a prefix ```name:``` for column name, e.g. ```query=name:query_id```
-  * Note: Data should group by query_id
+  * Note: Data should group by query_id. Index start from ```0```. And it doesn't count the label column when passing type is Index. e.g. when label is  column_0, and query_id is column_1, the correct parameter is ```query=0```.
 * ```is_predict_raw_score```, default=```false```, type=bool, alias=```predict_raw_score```
   * only used in prediction task
   * Set to ```true``` will only predict the raw scores.
