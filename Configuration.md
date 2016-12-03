@@ -132,9 +132,9 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
   * Number of data that sampled to construct histogram bins.
   * Will give better training result when set this larger. But will increase data loading time.
   * Set this to larger value if data is very sparse.
-* ```num_model_predict```, default=```-1```, type=int
-  * only used in prediction task, used to how many models will be used in prediction. 
-  * ```< 0``` means no limit
+* ```num_iteration_predict```, default=```-1```, type=int
+  * only used in prediction task, used to how many trained iterations will be used in prediction. 
+  * ```<= 0``` means no limit
 
 
 ## Objective parameters
