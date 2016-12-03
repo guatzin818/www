@@ -6,9 +6,9 @@ LightGBM use Visual Studio (2013 or higher) to build in Windows.
 
 1. Clone or download latest source code.
 2. Open ```./windows/LightGBM.sln``` by Visual Studio.
-3. Set configuration to ```Release``` and ```x64``` (set to ```DLL`` for building libarary) .
+3. Set configuration to ```Release``` and ```x64``` (set to ```DLL``` for building library) .
 4. Press ```Ctrl+Shift+B``` to build.
-5. The exe file is in ```./windows/x64/Release/``` after built.
+5. The exe file is in ```./windows/x64/Release/``` after built (library(.dll) file is in ```./windows/x64/DLL/```).
 
 Use MinGW:
 ```
