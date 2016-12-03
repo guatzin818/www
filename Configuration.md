@@ -114,18 +114,23 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
 * ```weight```, default=```""```, type=string, alias=```weight_column```
   * specific the weight column
   * Use number for index, e.g. ```weight=0``` means column_0 is the weight
-  * Add a prefix ```name:``` for column name, e.g. ```weight =name:weight```
+  * Add a prefix ```name:``` for column name, e.g. ```weight=name:weight```
   * Note: Index start from ```0```. And it doesn't count the label column when passing type is Index. e.g. when label is  column_0, and weight is column_1, the correct parameter is ```weight=0```.
 * ```query```, default=```""```, type=string, alias=```query_column```,```group```,```group_column```
   * specific the query/group id column
   * Use number for index, e.g. ```query=0``` means column_0 is the query id
   * Add a prefix ```name:``` for column name, e.g. ```query=name:query_id```
   * Note: Data should group by query_id. Index start from ```0```. And it doesn't count the label column when passing type is Index. e.g. when label is  column_0, and query_id is column_1, the correct parameter is ```query=0```.
-* ```is_predict_raw_score```, default=```false```, type=bool, alias=```predict_raw_score```
+* ```ignore_column```, default=```""```, type=string, alias=```ignore_feature```,```blacklist```
+  * specific some ignore columns in training
+  * Use number for index, e.g. ```ignore_column=0,1,2``` means column_0, column_1 and column_2 will be ignored.
+  * Add a prefix ```name:``` for column name, e.g. ```ignore_column=name:c1,c2,c3``` means c1, c2 and c3 will be ignored.
+  * Note: Index start from ```0```. And it doesn't count the label column.
+* ```predict_raw_score```, default=```false```, type=bool, alias=```raw_score```,```is_predict_raw_score```
   * only used in prediction task
   * Set to ```true``` will only predict the raw scores.
   * Set to ```false``` will transformed score
-* ```is_predict_leaf_index ```, default=```false```, type=bool, alias=```predict_leaf_index ```
+* ```predict_leaf_index ```, default=```false```, type=bool, alias=```leaf_index ```,```is_predict_leaf_index ```
   * only used in prediction task
   * Set to ```true``` to predict with leaf index of all trees
 * ```bin_construct_sample_cnt```, default=```50000```, type=int
@@ -141,6 +146,8 @@ The parameter format is ```key1=value1 key2=value2 ... ``` . And parameters can 
 
 * ```sigmoid```, default=```1.0```, type=double
   * parameter for sigmoid function. Will be used in binary classification and lambdarank.
+* ```scale_pos_weight```, default=```1.0```, type=double
+  * weight of positive class in binary classification task
 * ```is_unbalance```, default=```false```, type=bool
   * used in binary classification. Set this to ```true``` if training data are unbalance.
 * ```max_position```, default=```20```, type=int
