@@ -8,6 +8,15 @@ LightGBM supports input data file with [CSV](https://en.wikipedia.org/wiki/Comma
 
 Label is the data of first column, and there is no header in the file.
 
+### Categorical feature support
+
+update 12/5/2016:
+
+LightGBM can use categorical feature directly (without one-hot coding). The experiment on [Expo data](http://stat-computing.org/dataexpo/2009/) shows about 8x speed-up compared with one-hot coding (refer the log to [categorical]( https://github.com/guolinke/boosting_tree_benchmarks/blob/master/lightgbm/lightgbm_dataexpo_speed.log) and [one-hot]( https://github.com/guolinke/boosting_tree_benchmarks/blob/master/lightgbm/lightgbm_dataexpo_onehot_speed.log)).
+
+For the setting details, please refer to [Configuration](https://github.com/Microsoft/LightGBM/wiki/Configuration#io-parameters).
+
+### Weight and query/group data
 LightGBM also support weighted training, it needs an additional [weight data](https://github.com/Microsoft/LightGBM/wiki/Configuration#weight-data). And it needs an additional [query data](https://github.com/Microsoft/LightGBM/wiki/Configuration#query-data) for ranking task.
 
 update 11/3/2016:
@@ -16,8 +25,7 @@ update 11/3/2016:
 2. can specific label column, weight column and query/group id column. Both index and column are supported
 3. can specific a list of ignored columns
 
-For the detailed usage, please refer to [Configuration](https://github.com/Microsoft/LightGBM/wiki/Configuration).
-
+For the detailed usage, please refer to [Configuration](https://github.com/Microsoft/LightGBM/wiki/Configuration#io-parameters).
 
 ## Parameter quick look
 
