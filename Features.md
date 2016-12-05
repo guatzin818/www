@@ -120,6 +120,7 @@ Support following metrics:
 For more details, please refer to [Configuration](https://github.com/Microsoft/LightGBM/wiki/Configuration).
 
 ## Other features
+* Directly use for categorical features
 * Limit max_depth of tree while grows tree leaf-wise
 * [DART](https://arxiv.org/abs/1505.01866)
 * L1/L2 regularization
@@ -140,7 +141,6 @@ For more details, please refer to [Configuration](https://github.com/Microsoft/L
 
 * More languages (e.g. Python, R) support
 * More platforms (e.g. Hadoop, Spark) support
-* Directly use for categorical features (Finished 12/5/2016)
 
 ## References
 [1] Mehta, Manish, Rakesh Agrawal, and Jorma Rissanen. "SLIQ: A fast scalable classifier for data mining." International Conference on Extending Database Technology. Springer Berlin Heidelberg, 1996.
