@@ -4,13 +4,16 @@ For the detailed experiment scripts and output logs, please refer to this [repo]
 
 ### Experiment Data
 
-We use 3 data set to conduct our comparison experiments. Details of data are listed in the following table:
+We use 4 data set to conduct our comparison experiments. Details of data are listed in the following table:
 
 | Data     |      Task     |  Link | #Train_Set | #Feature| Comments|
 |----------|---------------|-------|-------|---------|---------|
 | Higgs    |  Binary classification | [link](https://archive.ics.uci.edu/ml/datasets/HIGGS) |10,500,000|28| use last 500,000 samples as test set  | 
 | Yahoo LTR|  Learning to rank      | [link](https://webscope.sandbox.yahoo.com/catalog.php?datatype=c)  	|473,134|700|   set1.train as train, set1.test as test |
 | MS LTR   |  Learning to rank      | [link](http://research.microsoft.com/en-us/projects/mslr/) |2,270,296|137| {S1,S2,S3} as train set, {S5} as test set |
+| Expo     |  Binary classification | [link](http://stat-computing.org/dataexpo/2009/) |11,000,000|8| use last 1,000,000 as test set |
+
+Note: **Most of features in Expo are categorical features. xgboost doesn't support categorical feature directly, so it need to convert categorical features to one-hot coding before training** . 
 
 ### Environment
 
@@ -77,9 +80,10 @@ The following table is the comparison of time cost:
 
 | Data      |  xgboost| xgboost_approx |  LightGBM|
 |----|  ----| ---- |  ----|
-| Higgs|4604.09s |2142.72s |**360.77s** |
-| Yahoo LTR|704.925s |497.467s |**173.39s**|
-| MS LTR|1338.28s |1046.48s |**263.51s**|
+| Higgs|4604.09s |2142.72s |**310.65s** |
+| Yahoo LTR|704.925s |497.467s |**175.56s**|
+| MS LTR|1338.28s |1046.48s |**260.48s**|
+| Expo|1897.94 s |800.425 s |**116.59s**|
 
 [[image/time_cost.png]]
 
@@ -115,6 +119,13 @@ NDCG at MS LTR:
 | NDCG@5|0.476245|0.474441|**0.510153**|
 | NDCG@10|0.495091|0.493346|**0.52666**|
 
+
+auc at Expo:
+
+| Metric      |  xgboost| xgboost_approx |  LightGBM |
+| ----------- |  -------| -------------- |  -------- |
+| auc|0.75548|0.757071|**0.781061**|
+
 We found LightGBM has better accuracy than xgboost on all experiment data sets.
 
 #### Memory consumption
@@ -126,6 +137,7 @@ We monitor ```RES``` while running training task. And we set ```two_round=true``
 | Higgs     | 4.853GB  | 4.875GB | **0.822GB** | 
 | Yahoo LTR | 1.907GB  | 2.221GB | **0.831GB** | 
 | MS LTR    | 5.469GB  | 5.600GB | **0.745GB** |
+| Expo      | 1.553GB  | 1.560GB | **0.450GB** |
 
 LightGBM benefits from its histogram optimization algorithm, so it consumes much lower memory.
 
