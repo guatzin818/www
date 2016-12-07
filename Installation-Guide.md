@@ -2,6 +2,7 @@ LightGBM is implemented by standard C++ 11. It doesn't need additional packages 
 
 ## Windows
 
+### Visual Studio
 LightGBM use Visual Studio (2013 or higher) to build in Windows.
 
 1. Clone or download latest source code.
@@ -10,7 +11,17 @@ LightGBM use Visual Studio (2013 or higher) to build in Windows.
 4. Press ```Ctrl+Shift+B``` to build.
 5. The exe file is in ```./windows/x64/Release/``` after built (library(.dll) file is in ```./windows/x64/DLL/```).
 
-Use MinGW:
+### cmake with Visual Studio
+
+
+```
+git clone --recursive https://github.com/Microsoft/LightGBM
+cd LightGBM
+cmake -DCMAKE_GENERATOR_PLATFORM=x64 .
+cmake --build . --target ALL_BUILD --config Release
+```
+
+### cmake with MinGW
 ```
 git clone --recursive https://github.com/Microsoft/LightGBM
 cd LightGBM
