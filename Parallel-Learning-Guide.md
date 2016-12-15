@@ -10,13 +10,14 @@ LightGBM provides 2 parallel learning algorithms now.
 |----------------|---------------------|
 |Data parallel   | tree_learner=data   |
 |Feature parallel| tree_learner=feature|
+|Voting parallel| tree_learner=voting|
 
 These algorithms are suited for different scenarios, which is listed in following table:
 
 |                     | #data is small| #data is large| 
 |---------------------|------------------|-----------------|
 |**#feature is small**| Feature Parallel | Data Parallel   |
-|**#feature is large**| Feature Parallel | will release soon |
+|**#feature is large**| Feature Parallel | Voting Parallel |
 
 
 More details about these parallel algorithms can be found in [optimization in parallel learning](https://github.com/Microsoft/LightGBM/wiki/Features#optimization-in-parallel-learning).
