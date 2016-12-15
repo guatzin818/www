@@ -1,2 +1,2 @@
-* [**Parameters**](https://github.com/Microsoft/LightGBM/blob/master/docs/Parameters.md) : all parameters in command line version LightGBM
-* [**Python-API**](https://github.com/Microsoft/LightGBM/blob/master/docs/Python_API.md) : Expose interface of python-package
+* [**Parameters**](https://github.com/Microsoft/LightGBM/blob/master/docs/Parameters.md) : Parameters in command line version LightGBM
+* [**Python-API**](https://github.com/Microsoft/LightGBM/blob/master/docs/Python_API.md) : Exposed interfaces of python-package
