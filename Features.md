@@ -95,6 +95,9 @@ We reduce communication cost of data parallel in LightGBM:
 
 Above all, we reduce communication cost to O(0.5 * #feature* #bin) for data parallel in LightGBM.
 
+### Voting parallel
+
+Voting parallel further reduce the communication cost in Data parallel to constant cost. It uses two stage voting to reduce the communication cost of feature Histograms. For more details, please refer to [this paper](http://papers.nips.cc/paper/6381-a-communication-efficient-parallel-algorithm-for-decision-tree). 
 
 
 ## Applications and metrics
