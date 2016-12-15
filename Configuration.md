@@ -199,6 +199,18 @@ Following parameters are used for parallel learning, and only used for base(sock
 
 ## Tuning Parameters
 
+### Convert parameters from XGBoost
+
+LightGBM uses [leaf-wise](https://github.com/Microsoft/LightGBM/wiki/Features#optimization-in-accuracy) tree growth algorithm. But other popular tools, e.g. XGBoost, use depth-wise tree growth. So LightGBM use ```num_leaves``` to control complexity of tree model, and other tools usually use ```max_depth```. Following table is the correspond between leaves and depths. The relation is ```num_leaves = 2^(max_depth) ```.
+
+| max_depth | num_leaves |
+| --------- | ---------- |
+| 1 | 2 |
+| 2 | 4 |
+| 3 | 8 |
+| 7 | 128 |
+| 10 | 1024 |   
+
 ### For faster speed
 
 * Use bagging by set ```bagging_fraction``` and ```bagging_freq``` 
