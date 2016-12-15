@@ -1,6 +1,9 @@
-This is a quick start guide for LightGBM.
+This is a quick start guide for LightGBM of cli version.
 
 Follow the [Installation Guide](https://github.com/Microsoft/LightGBM/wiki/Installation-Guide) to install LightGBM first.
+
+***List of other Helpful Links***
+* [Python Package quick start guide](https://github.com/Microsoft/LightGBM/blob/master/docs/Python_intro.md)
 
 ## Training data format 
 
