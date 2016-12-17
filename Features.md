@@ -12,8 +12,6 @@ LightGBM uses the histogram based algorithms<sup>[3][4]</sup>, which bucketing c
     * Pre-sorted based algorithms need O(#data) times calculation
     * Histogram based algorithms only need to calculate O(#bins) times, and #bins is far smaller than #data
         * It still needs O(#data) times to construct histogram, which only contain sum-up operation
-* **Only need to split data one time after finding best split point**
-    * Pre-sorted based algorithms need to split data O(#features) times (since different features access data in different order)
 * **Use histogram subtraction for further speed-up**
     * To get one leaf's histograms in a binary tree, can use the histogram subtraction of its parent and its neighbor 
     * So it only need to construct histograms for one leaf (with smaller #data than its neighbor), then can get histograms of its neighbor by histogram subtraction with small cost( O(#bins) )
