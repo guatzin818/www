@@ -30,7 +30,9 @@ Most decision tree learning algorithms grow tree by level(depth)-wise, like the 
 [[image/level_wise.png]]
 
 LightGBM grows tree by leaf-wise. It will choose the leaf with max delta loss to grow. 
-When growing same #leaf, Leaf-wise algorithm can reduce more loss than level-wise algorithm.
+When growing same #leaf, Leaf-wise algorithm can reduce more loss than level-wise algorithm. 
+
+Leaf-wise may cause over-fitting when #data is small. So, LightGBM use an additional parameter ```max_depth``` to limit depth of tree and avoid over-fitting. 
 
 [[image/leaf_wise.png]]
 
