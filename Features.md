@@ -6,7 +6,7 @@ This page doesn't contain detailed algorithms, please refer to cited paper or so
 
 Many boosting tools use pre-sorted based algorithms<sup>[1][2]</sup>(e.g. default algorithm in xgboost) for decision tree learning. It is a simple solution, but not easy to optimize.
 
-LightGBM uses the histogram based algorithms<sup>[3][4]</sup>, which bucketing continuous feature(attribute) values into discrete bins, to speed up training procedure and reduce memory usage. Following are advantages for histogram based algorithms:
+LightGBM uses the histogram based algorithms<sup>[3][4][5]</sup>, which bucketing continuous feature(attribute) values into discrete bins, to speed up training procedure and reduce memory usage. Following are advantages for histogram based algorithms:
 
 * **Reduce calculation cost of split gain**
     * Pre-sorted based algorithms need O(#data) times calculation
@@ -45,7 +45,7 @@ LightGBM can use categorical feature directly (without one-hot coding). The expe
 
 ## Optimization in network communication
 
-It only needs to use some collective communication algorithms, like "All reduce", "All gather" and "Reduce scatter", in parallel learning of LightGBM. LightGBM implement state-of-art algorithms described in this [paper](http://wwwi10.lrr.in.tum.de/~gerndt/home/Teaching/HPCSeminar/mpich_multi_coll.pdf)<sup>[5]</sup>. These collective communication algorithms can provide much better performance than point-to-point communication.
+It only needs to use some collective communication algorithms, like "All reduce", "All gather" and "Reduce scatter", in parallel learning of LightGBM. LightGBM implement state-of-art algorithms described in this [paper](http://wwwi10.lrr.in.tum.de/~gerndt/home/Teaching/HPCSeminar/mpich_multi_coll.pdf)<sup>[6]</sup>. These collective communication algorithms can provide much better performance than point-to-point communication.
 
 ## Optimization in parallel learning
 
@@ -161,4 +161,7 @@ For more details, please refer to [Configuration](https://github.com/Microsoft/L
 
 [4] Machado, F. P. "Communication and memory efficient parallel decision tree construction." (2003).
 
-[5] Thakur, Rajeev, Rolf Rabenseifner, and William Gropp. "Optimization of collective communication operations in MPICH." International Journal of High Performance Computing Applications 19.1 (2005): 49-66.
+[5] Li, Ping, Qiang Wu, and Christopher J. Burges. "Mcrank: Learning to rank using multiple classification and gradient boosting." Advances in neural information processing systems. 2007.
+
+[6] Thakur, Rajeev, Rolf Rabenseifner, and William Gropp. "Optimization of collective communication operations in MPICH." International Journal of High Performance Computing Applications 19.1 (2005): 49-66.
+
