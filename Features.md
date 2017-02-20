@@ -45,13 +45,6 @@ Leaf-wise may cause over-fitting when #data is small. So, LightGBM can use an ad
 
 [[image/leaf_wise.png]]
 
-
-## Directly use of categorical feature (deprecated in v2)
-
-LightGBM can use categorical feature directly (without one-hot coding). The experiment on [Expo data](http://stat-computing.org/dataexpo/2009/) shows about 8x speed-up compared with one-hot coding (refer to [categorical log]( https://github.com/guolinke/boosting_tree_benchmarks/blob/master/lightgbm/lightgbm_dataexpo_speed.log) and [one-hot log]( https://github.com/guolinke/boosting_tree_benchmarks/blob/master/lightgbm/lightgbm_dataexpo_onehot_speed.log)).
-
-[[image/categorical_decision_rule.png]]
-
 ## Optimization in network communication
 
 It only needs to use some collective communication algorithms, like "All reduce", "All gather" and "Reduce scatter", in parallel learning of LightGBM. LightGBM implement state-of-art algorithms described in this [paper](http://wwwi10.lrr.in.tum.de/~gerndt/home/Teaching/HPCSeminar/mpich_multi_coll.pdf)<sup>[6]</sup>. These collective communication algorithms can provide much better performance than point-to-point communication.
