@@ -21,7 +21,7 @@ LightGBM uses the histogram based algorithms<sup>[3][4][5]</sup>, which bucketin
 * **Reduce communication cost for parallel learning**
 
 ## Sparse optimization
-  * Only need O(#non_zero_data) to construct histogram for sparse features
+  * Only need O(2 x #non_zero_data) to construct histogram for sparse features
 
 ## Optimization in accuracy
 
