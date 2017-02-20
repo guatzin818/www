@@ -2,6 +2,15 @@ This is a short introduction for the features and algorithms used in LightGBM.
 
 This page doesn't contain detailed algorithms, please refer to cited paper or source code if you are interested.
 
+## Updates 
+
+02/20/2017: Add two new features: **Gradient-based One-Side Sampling**(GOSS) and **Exclusive Feature Bundling**(EFB).
+
+With GOSS, LightGBM can use a subset to speed up training. we exclude a significant proportion of data instances with small gradients, and only use the rest to estimate the information gain. 
+
+EFB: We bundle those features that are mutually exclusive (i.e., with a high probability, they cannot simultaneously take nonzero values), to reduce the number of features and speed up the training when #feature is large.
+
+
 ## Optimization in speed and memory usage
 
 Many boosting tools use pre-sorted based algorithms<sup>[1][2]</sup>(e.g. default algorithm in xgboost) for decision tree learning. It is a simple solution, but not easy to optimize.
