@@ -1,19 +1,23 @@
+update 02/21/2017: add xgboost_hist result. 
+
+
 ## Comparison Experiment
+
 
 For the detailed experiment scripts and output logs, please refer to this [repo](https://github.com/guolinke/boosting_tree_benchmarks). 
 
 ### Experiment Data
 
-We use 4 data set to conduct our comparison experiments. Details of data are listed in the following table:
+We use 4 datasets to conduct our comparison experiments. Details of data are listed in the following table:
 
 | Data     |      Task     |  Link | #Train_Set | #Feature| Comments|
 |----------|---------------|-------|-------|---------|---------|
 | Higgs    |  Binary classification | [link](https://archive.ics.uci.edu/ml/datasets/HIGGS) |10,500,000|28| use last 500,000 samples as test set  | 
 | Yahoo LTR|  Learning to rank      | [link](https://webscope.sandbox.yahoo.com/catalog.php?datatype=c)  	|473,134|700|   set1.train as train, set1.test as test |
 | MS LTR   |  Learning to rank      | [link](http://research.microsoft.com/en-us/projects/mslr/) |2,270,296|137| {S1,S2,S3} as train set, {S5} as test set |
-| Expo     |  Binary classification | [link](http://stat-computing.org/dataexpo/2009/) |11,000,000|8| use last 1,000,000 as test set |
+| Expo     |  Binary classification | [link](http://stat-computing.org/dataexpo/2009/) |11,000,000|700| use last 1,000,000 as test set |
+| Allstate |  Binary classification | [link](https://www.kaggle.com/c/ClaimPredictionChallenge) |13,184,290|4228| use last 1,000,000 as test set |
 
-Note: **Most of features in Expo are categorical features. xgboost doesn't support categorical feature directly, so it need to convert categorical features to one-hot coding before training** . 
 
 ### Environment
 
@@ -21,11 +25,11 @@ We use one Linux server as experiment platform, details are listed in the follow
 
 | OS     |      CPU     |  Memory | 
 |--------|--------------|---------|
-| Ubuntu 14.04 LTS  |  2 * E5-2680 v2 | DDR3 1600Mhz, 256GB|
+| Ubuntu 14.04 LTS  |  2 * E5-2670 v3 | DDR4 2133Mhz, 256GB|
 
 ### Baseline
 
-We use [xgboost](https://github.com/dmlc/xgboost) as baseline, and build version is latest version at 27 OCT 2016 [016ab89](https://github.com/dmlc/xgboost/tree/016ab89484e7a6313a7de11160d0c3370fc5c35d).
+We use [xgboost](https://github.com/dmlc/xgboost) as baseline.
 
 Both xgboost and LightGBM are built with OpenMP support.
 
@@ -44,16 +48,17 @@ We set up total 3 settings for experiments, the parameters of these settings are
  min_child_weight=100
  ```
 
-2. xgboost_approx (using histogram based algorithm):
+2. xgboost_hist (using histogram based algorithm):
  ```
  eta = 0.1
- max_depth = 8
  num_round = 500
  nthread=16
- # num_bins = (1/sketch_eps)
- sketch_eps=0.004
  tree_method=approx
  min_child_weight=100
+ tree_method=hist
+ grow_policy=lossguide 
+ max_depth=0 
+ max_leaves=255
  ```
 
 3. LightGBM:
@@ -66,7 +71,7 @@ We set up total 3 settings for experiments, the parameters of these settings are
  min_sum_hessian_in_leaf=100
  ```
 
-xgboost grows tree depth-wise and controls model complexity by ```max_depth```. LightGBM uses leaf-wise algorithm instead and controls model complexity by ```num_leaves```. So we cannot compare them in the exact same model setting. For the tradeoff, we use xgboost with ```max_depth=8```, which will have max number leaves to 255, to compare with LightGBM with ```num_leves=255```. And xgboost_approx with ```sketch_eps=0.004``` will have #bins to 250, which is similar to default(255) in LightGBM.
+xgboost grows tree depth-wise and controls model complexity by ```max_depth```. LightGBM uses leaf-wise algorithm instead and controls model complexity by ```num_leaves```. So we cannot compare them in the exact same model setting. For the tradeoff, we use xgboost with ```max_depth=8```, which will have max number leaves to 255, to compare with LightGBM with ```num_leves=255```. 
 
 Other parameters are default values. 
 
@@ -78,14 +83,16 @@ For speed comparison, we only run the training task, which is without any test o
 
 The following table is the comparison of time cost:
 
-| Data      |  xgboost| xgboost_approx |  LightGBM|
-|----|  ----| ---- |  ----|
-| Higgs|4604.09s |2142.72s |**310.65s** |
-| Yahoo LTR|704.925s |497.467s |**175.56s**|
-| MS LTR|1338.28s |1046.48s |**260.48s**|
-| Expo|1897.94 s |800.425 s |**116.59s**|
 
-[[image/time_cost.png]]
+| Data      |  xgboost | xgboost_hist |  LightGBM|
+|----|  ----| ----- | ----|
+| Higgs|3794.34 s |551.898 s |296.544153 s |
+| Yahoo LTR|674.322 s |265.302 s |160.002331 s |
+| MS LTR|1251.27 s |385.201 s |245.126399 s |
+| Expo|1607.35 s |588.253 s |158.417434 s |
+| Allstate|2867.22 s |1355.71 s |535.694838 s |
+
+
 
 We found LightGBM is faster than xgboost on all experiment data sets. 
 
@@ -93,53 +100,60 @@ We found LightGBM is faster than xgboost on all experiment data sets.
 
 For accuracy comparison, we use the accuracy on test data set to have a fair comparison.
 
+
 Higgs's AUC:
 
-| Metric      |  xgboost| xgboost_approx |  LightGBM|
-| ----------- |  -------| -------------- |  --------|
-| AUC|0.839528|0.840533|**0.845123**|
-
-NDCG at Yahoo LTR:
-
-| Metric      |  xgboost| xgboost_approx |  LightGBM|
-| ----------- |  -------| -------------- |  --------|
-| NDCG@1|0.721213|0.720535|**0.731828**|
-| NDCG@3|0.721025|0.719632|**0.738793**|
-| NDCG@5|0.740316|0.739363|**0.756369**|
-| NDCG@10|0.782226|0.781775|**0.796572**|
+| Metric      |  xgboost| xgboost_hist |  LightGBM|
+|----|  ----| ---- | ----|
+| AUC|0.839593|0.845605|0.845154|
 
 
-NDCG at MS LTR:
+ndcg at Yahoo LTR:
+
+| Metric      |  xgboost | xgboost_hist |  LightGBM|
+|----|  ----| ---- | ----|
+| ndcg@1|0.719748|0.720223|0.732466|
+| ndcg@3|0.717813|0.721519|0.738048|
+| ndcg@5|0.737849|0.739904|0.756548|
+| ndcg@10|0.78089|0.783013|0.796818|
 
 
-| Metric      |  xgboost| xgboost_approx |  LightGBM|
-| ----------- |  -------| -------------- |  --------|
-| NDCG@1|0.488128|0.480611|**0.521854**|
-| NDCG@3|0.472706|0.470275|**0.504671**|
-| NDCG@5|0.476245|0.474441|**0.510153**|
-| NDCG@10|0.495091|0.493346|**0.52666**|
+ndcg at MS LTR:
+
+| Metric      |  xgboost | xgboost_hist |  LightGBM|
+|----|  ----| ---- | -----|
+| ndcg@1|0.483956|0.488649|0.524255|
+| ndcg@3|0.467951|0.473184|0.505327|
+| ndcg@5|0.472476|0.477438|0.510007|
+| ndcg@10|0.492429|0.496967|0.527371|
 
 
 auc at Expo:
 
-| Metric      |  xgboost| xgboost_approx |  LightGBM |
-| ----------- |  -------| -------------- |  -------- |
-| auc|0.75548|0.757071|**0.781061**|
+| Metric      |  xgboost | xgboost_hist |  LightGBM|
+|----|  ----| ---- |  ----|
+| auc|0.756713|0.777777|0.777543|
 
-We found LightGBM has better accuracy than xgboost on all experiment data sets.
+
+auc at Allstate:
+
+| Metric      |  xgboost | xgboost_hist |  LightGBM|
+|----|  ----| ---- |  ----|
+| auc|0.607201|0.609042|0.609167|
+
 
 #### Memory consumption
 
 We monitor ```RES``` while running training task. And we set ```two_round=true``` (Will increase data-loading time, but reduce peak memory usage, not affect training speed or accuracy) in LightGBM to reduce peak memory usage. 
 
-| Data      | xgboost | xgboost_approx| LightGBM|  
+| Data      | xgboost | xgboost_hist| LightGBM|  
 |-----------|---------|-------------- |---------|
-| Higgs     | 4.853GB  | 4.875GB | **0.822GB** | 
-| Yahoo LTR | 1.907GB  | 2.221GB | **0.831GB** | 
-| MS LTR    | 5.469GB  | 5.600GB | **0.745GB** |
-| Expo      | 1.553GB  | 1.560GB | **0.450GB** |
+| Higgs     | 4.853GB  | 3.784GB | **0.868GB** | 
+| Yahoo LTR | 1.907GB  | 1.468GB | **0.831GB** | 
+| MS LTR    | 5.469GB  | 3.654GB | **0.886GB** |
+| Expo      | 1.553GB  | 1.393GB | **0.543GB** |
+| Allstate  | 6.237GB  | 4.990GB | **1.027GB** |
 
-LightGBM benefits from its histogram optimization algorithm, so it consumes much lower memory.
 
 ## Parallel Experiment
 
