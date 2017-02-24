@@ -29,7 +29,7 @@ Most decision tree learning algorithms grow tree by level(depth)-wise, like the 
 
 [[image/level_wise.png]]
 
-LightGBM grows tree by leaf-wise. It will choose the leaf with max delta loss to grow. 
+LightGBM grows tree by leaf-wise(best-first)<sup>[7]</sup>. It will choose the leaf with max delta loss to grow. 
 When growing same #leaf, Leaf-wise algorithm can reduce more loss than level-wise algorithm. 
 
 Leaf-wise may cause over-fitting when #data is small. So, LightGBM can use an additional parameter ```max_depth``` to limit depth of tree and avoid over-fitting (Tree still grows by leaf-wise). 
@@ -157,3 +157,4 @@ For more details, please refer to [Configuration](https://github.com/Microsoft/L
 
 [6] Thakur, Rajeev, Rolf Rabenseifner, and William Gropp. "Optimization of collective communication operations in MPICH." International Journal of High Performance Computing Applications 19.1 (2005): 49-66.
 
+[7] Shi, Haijian. Best-first decision tree learning. Diss. The University of Waikato, 2007.
