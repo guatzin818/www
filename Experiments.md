@@ -87,11 +87,11 @@ The following table is the comparison of time cost:
 
 | Data      |  xgboost | xgboost_hist |  LightGBM|
 |----|  ----| ----- | ----|
-| Higgs|3794.34 s |551.898 s |255.677001 s |
-| Yahoo LTR|674.322 s |265.302 s |155.635984 s |
-| MS LTR|1251.27 s |385.201 s |220.452348 s |
-| Expo|1607.35 s |588.253 s |137.810314 s |
-| Allstate|2867.22 s |1355.71 s |359.910881 s |
+| Higgs|3794.34 s |551.898 s |238.505513 s |
+| Yahoo LTR|674.322 s |265.302 s |150.18644 s |
+| MS LTR|1251.27 s |385.201 s |215.320316 s |
+| Expo|1607.35 s |588.253 s |138.504179 s |
+| Allstate|2867.22 s |1355.71 s |348.084475 s |
 
 
 
