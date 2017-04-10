@@ -29,7 +29,6 @@ cmake -G "MinGW Makefiles" .
 mingw32-make.exe -j
 ```
 
-
 ## Linux
 
 LightGBM use ***cmake*** to build in Unix. Run following: 
@@ -104,4 +103,10 @@ mkdir build ; cd build
 cmake -DCMAKE_CXX_COMPILER=g++-6 -DCMAKE_C_COMPILER=gcc-6 -DUSE_MPI=ON .. 
 make -j 
 ```
+
+## With GPU support
+
+In Linux/osx, add ```-DUSE_GPU=1``` in the above ```cmake``` commands.
+
+GPU is not supported for windows platform now.  
 
