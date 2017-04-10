@@ -106,7 +106,38 @@ make -j
 
 ## With GPU support
 
-In Linux/osx, add ```-DUSE_GPU=1``` in the above ```cmake``` commands.
+The following dependencies should be installed before compilation:
 
-GPU is not supported for windows platform now.  
+- OpenCL 1.2 headers and libraries, which is usually provided by GPU manufacture.  
+  The generic OpenCL ICD packages (for example, Debian package
+  `ocl-icd-libopencl1` and `ocl-icd-opencl-dev`) can also be used.
 
+- libboost 1.56 or later (1.61 or later recommended). We use Boost.Compute as
+  the interface to GPU, which is part of the Boost library since version 1.61.
+  However, since we include the source code of Boost.Compute as a submodule, we
+  only require the host has Boost 1.56 or later installed. We also use
+  Boost.Align for memory allocation. Boost.Compute requires Boost.System
+  and Boost.Filesystem to store offline kernel cache. The following Debian 
+  packages should provide necessary Boost libraries: 
+  `libboost-dev, libboost-system-dev, libboost-filesystem-dev`.
+
+- CMake 3.2 or later
+
+Currently only building on Linux has been tested, but it should also work with
+MinGW on Windows as long as all dependencies are available. To build LightGBM-GPU,
+use the following procedure:
+
+First clone this repository:
+
+```
+git clone --recursive https://github.com/Microsoft/LightGBM
+```
+
+Then run `cmake` and `make`:
+
+```
+cd LightGBM
+mkdir build ; cd build
+cmake -DUSE_GPU=1 .. 
+make -j 
+```
