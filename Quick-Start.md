@@ -2,5 +2,6 @@ Follow the [Installation Guide](https://github.com/Microsoft/LightGBM/wiki/Insta
 
 * [CLI Quick Start](https://github.com/Microsoft/LightGBM/blob/master/docs/Quick-Start.md)
 * [Python Package Quick Start](https://github.com/Microsoft/LightGBM/blob/master/docs/Python-intro.md)
+* [GPU Tutorial](https://github.com/Microsoft/LightGBM/blob/master/docs/GPU-Tutorial.md)
 
 
