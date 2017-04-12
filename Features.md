@@ -99,6 +99,14 @@ Above all, we reduce communication cost to O(0.5 * #feature* #bin) for data para
 
 Voting parallel further reduce the communication cost in Data parallel to constant cost. It uses two stage voting to reduce the communication cost of feature Histograms. For more details, please refer to [this paper](http://papers.nips.cc/paper/6381-a-communication-efficient-parallel-algorithm-for-decision-tree). 
 
+## GPU support
+
+Thanks @huanzhang12 for contributing this feature. Please visit following link to get more details.
+
+* [GPU Installation](https://github.com/Microsoft/LightGBM/wiki/Installation-Guide#with-gpu-support)
+* [GPU Performance](https://github.com/Microsoft/LightGBM/blob/master/docs/GPU-Performance.md)
+* [GPU Tutorial](https://github.com/Microsoft/LightGBM/blob/master/docs/GPU-Tutorial.md)
+
 
 ## Applications and metrics
 
