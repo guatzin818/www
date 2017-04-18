@@ -40,6 +40,8 @@ cmake ..
 make -j 
 ```
 
+Note: glibc >= 2.14 requirement.
+
 ## OSX
 
 LightGBM depends on OpenMP for compiling, which isn't supported by Apple Clang.
