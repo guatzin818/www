@@ -76,6 +76,8 @@ Note: For Windows users, need to start "smpd" to start MPI service. More details
 1. Edit following parameters in config file:
 
     ```tree_learner=your_parallel_algorithm```, edit "your_parallel_algorithm"(e.g. feature/data) here.
+
+    ```num_machines=your_num_machines```, edit "your_num_machines"(e.g. 4) here.
     
 2. Copy data file, executable file, config file and "mlist.txt" to all machines. Note: MPI need run in **same path on all machines**.
 3. Run following command on one machine (not need to run on all machines), need to change "your_config_file" to real config file.
