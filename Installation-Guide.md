@@ -17,7 +17,9 @@ LightGBM use Visual Studio (2013 or higher) to build in Windows.
 ```
 git clone --recursive https://github.com/Microsoft/LightGBM
 cd LightGBM
-cmake -DCMAKE_GENERATOR_PLATFORM=x64 .
+mkdir build
+cd build
+cmake -DCMAKE_GENERATOR_PLATFORM=x64 ..
 cmake --build . --target ALL_BUILD --config Release
 ```
 
@@ -25,7 +27,9 @@ cmake --build . --target ALL_BUILD --config Release
 ```
 git clone --recursive https://github.com/Microsoft/LightGBM
 cd LightGBM
-cmake -G "MinGW Makefiles" .
+mkdir build
+cd build
+cmake -G "MinGW Makefiles" ..
 mingw32-make.exe -j
 ```
 
@@ -108,6 +112,8 @@ make -j
 
 ## With GPU support
 
+### Linux
+
 The following dependencies should be installed before compilation:
 
 - OpenCL 1.2 headers and libraries, which is usually provided by GPU manufacture.  
@@ -125,9 +131,7 @@ The following dependencies should be installed before compilation:
 
 - CMake 3.2 or later
 
-Currently only building on Linux has been tested, but it should also work with
-MinGW on Windows as long as all dependencies are available. To build LightGBM-GPU,
-use the following procedure:
+To build LightGBM-GPU, use the following procedure:
 
 First clone this repository:
 
@@ -143,3 +147,26 @@ mkdir build ; cd build
 cmake -DUSE_GPU=1 .. 
 make -j 
 ```
+
+### Windows
+
+If you use MinGW in windows, the build procedure are similar to the build in Linux.
+
+Following procedure is for the MSVC build. 
+
+1. Install OpenCL for windows. The installation is depend on the brand(Nvidia, AMD, Intel) of your GPU card. 
+2. Install Boost Binary: https://sourceforge.net/projects/boost/files/boost-binaries/1.64.0/ .
+   (Note: match your VC version.  Visual studio 2013 -> msvc-12.0-64.exe, 2015-> msvc-14.0-64.exe, 2016 -> msvc-12.1-64.exe). 
+3. run following in the command line:
+```
+Set BOOST_ROOT=C:\local\boost_1_64_0\
+Set BOOST_LIBRARYDIR=C:\local\boost_1_64_0\lib64-msvc-14.0
+git clone --recursive https://github.com/Microsoft/LightGBM
+cd LightGBM
+mkdir build
+cd build
+cmake -DCMAKE_GENERATOR_PLATFORM=x64 -DUSE_GPU=1 ..
+cmake --build . --target ALL_BUILD --config Release
+```
+Note: `C:\local\boost_1_64_0\` and `C:\local\boost_1_64_0\lib64-msvc-14.0` is the location of your Boost binaries. You also can set them to the environment variable to avoid `set ...` when build. 
+
