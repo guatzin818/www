@@ -154,7 +154,7 @@ If you use MinGW in windows, the build procedure are similar to the build in Lin
 
 Following procedure is for the MSVC build. 
 
-1. Install OpenCL for windows. The installation is depend on the brand(Nvidia, AMD, Intel) of your GPU card. 
+1. Install OpenCL for windows. The installation depend on the brand(Nvidia, AMD, Intel) of your GPU card. 
 2. Install Boost Binary: https://sourceforge.net/projects/boost/files/boost-binaries/1.64.0/ .
    (Note: match your VC version.  Visual studio 2013 -> msvc-12.0-64.exe, 2015-> msvc-14.0-64.exe, 2016 -> msvc-12.1-64.exe). 
 3. run following in the command line:
