@@ -150,7 +150,7 @@ make -j
 
 ### Windows
 
-If you use MinGW in windows, the build procedure are similar to the build in Linux.
+If you use MinGW in windows, the build procedure are similar to the build in Linux. [Details](https://github.com/Microsoft/LightGBM/blob/master/docs/GPU-Windows.md)
 
 Following procedure is for the MSVC build. 
 
