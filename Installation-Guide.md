@@ -59,7 +59,7 @@ brew install cmake
 brew install gcc --without-multilib
 git clone --recursive https://github.com/Microsoft/LightGBM ; cd LightGBM
 mkdir build ; cd build
-cmake -DCMAKE_CXX_COMPILER=g++-6 -DCMAKE_C_COMPILER=gcc-6 .. 
+cmake .. 
 make -j 
 ```
 
