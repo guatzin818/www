@@ -2,8 +2,9 @@ LightGBM is implemented by standard C++ 11. It doesn't need additional packages 
 
 ## Windows
 
+LightGBM can use Visual Studio, MSBuild with CMake or MinGW to build in Windows.
+
 ### Visual Studio
-LightGBM use Visual Studio (2013 or higher) to build in Windows.
 
 1. Clone or download latest source code.
 2. Open ```./windows/LightGBM.sln``` by Visual Studio.
@@ -11,8 +12,11 @@ LightGBM use Visual Studio (2013 or higher) to build in Windows.
 4. Press ```Ctrl+Shift+B``` to build.
 5. The exe file is in ```./windows/x64/Release/``` after built (library(.dll) file is in ```./windows/x64/DLL/```).
 
-### cmake with Visual Studio
+### cmake with MSBuild
 
+1. Install [git for windows](https://git-scm.com/download/win), [cmake](https://cmake.org/) and [MS Build](https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017) (Not need the MSbuild if you already install *Visual Studio*).
+
+2. Run following command:
 
 ```
 git clone --recursive https://github.com/Microsoft/LightGBM
@@ -23,7 +27,10 @@ cmake -DCMAKE_GENERATOR_PLATFORM=x64 ..
 cmake --build . --target ALL_BUILD --config Release
 ```
 
-### cmake with MinGW
+### cmake with MinGW64
+
+1. Install [git for windows](https://git-scm.com/download/win), [cmake](https://cmake.org/) and MinGW64.
+2. Run following command:
 ```
 git clone --recursive https://github.com/Microsoft/LightGBM
 cd LightGBM
@@ -75,11 +82,28 @@ You need to install [MSMPI](https://www.microsoft.com/en-us/download/details.asp
 
 Then:
 
+#### Visual Studio
+
 1. Clone or download latest source code.
 2. Open ```./windows/LightGBM.sln``` by Visual Studio.
 3. Set configuration to ```Release_mpi``` and ```x64``` .
 4. Press ```Ctrl+Shift+B``` to build.
 5. The exe file is in ```./windows/x64/Release_mpi/``` after built.
+
+#### cmake with MSBuild
+
+1. Install [git for windows](https://git-scm.com/download/win), [cmake](https://cmake.org/) and [MS Build](https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017) (Not need the MSbuild if you already install *Visual Studio*).
+
+2. Run following command:
+
+```
+git clone --recursive https://github.com/Microsoft/LightGBM
+cd LightGBM
+mkdir build
+cd build
+cmake -DCMAKE_GENERATOR_PLATFORM=x64 -DUSE_MPI=ON ..
+cmake --build . --target ALL_BUILD --config Release
+```
 
 Note: Doesn't support build mpi version by MinGW due to the miss of MPI Library in MinGW.
 ### Linux
@@ -153,7 +177,7 @@ make -j
 If you use MinGW in windows, the build procedure are similar to the build in Linux. Visit [here](https://github.com/Microsoft/LightGBM/blob/master/docs/GPU-Windows.md) to get more details.
 
 
-Following procedure is for the MSVC build. 
+Following procedure is for the MSVC(Microsoft Visual C++) build. 
 
 1. Install OpenCL for windows. The installation depend on the brand(Nvidia, AMD, Intel) of your GPU card. 
 
@@ -162,7 +186,7 @@ Following procedure is for the MSVC build.
     * For running on NVIDIA, get CUDA Toolkit: https://developer.nvidia.com/cuda-downloads
 
 2. Install Boost Binary: https://sourceforge.net/projects/boost/files/boost-binaries/1.64.0/ .
-   (Note: match your VC version.  Visual studio 2013 -> msvc-12.0-64.exe, 2015-> msvc-14.0-64.exe, 2017 -> msvc-14.1-64.exe). 
+   (Note: match your Visual C++ version.  Visual studio 2013 -> msvc-12.0-64.exe, 2015-> msvc-14.0-64.exe, 2017 -> msvc-14.1-64.exe). 
 3. run following in the command line:
 ```
 Set BOOST_ROOT=C:\local\boost_1_64_0\
