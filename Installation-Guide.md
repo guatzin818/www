@@ -4,15 +4,7 @@ LightGBM is implemented by standard C++ 11. It doesn't need additional packages 
 
 LightGBM can use Visual Studio, MSBuild with CMake or MinGW to build in Windows.
 
-### Visual Studio
-
-1. Clone or download latest source code.
-2. Open ```./windows/LightGBM.sln``` by Visual Studio.
-3. Set configuration to ```Release``` and ```x64``` (set to ```DLL``` and ```x64``` for building library(.dll file)).
-4. Press ```Ctrl+Shift+B``` to build.
-5. The exe file is in ```./windows/x64/Release/``` after built (library(.dll) file is in ```./windows/x64/DLL/```).
-
-### cmake with MSBuild
+### Visual Studio (Or MSBuild)
 
 1. Install [git for windows](https://git-scm.com/download/win), [cmake](https://cmake.org/) and [MS Build](https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017) (Not need the MSbuild if you already install *Visual Studio*).
 
@@ -27,7 +19,9 @@ cmake -DCMAKE_GENERATOR_PLATFORM=x64 ..
 cmake --build . --target ALL_BUILD --config Release
 ```
 
-### cmake with MinGW64
+The exe and dll will be in ```LightGBM/Release``` folder.
+
+### MinGW64
 
 1. Install [git for windows](https://git-scm.com/download/win), [cmake](https://cmake.org/) and MinGW64.
 2. Run following command:
@@ -40,9 +34,11 @@ cmake -G "MinGW Makefiles" ..
 mingw32-make.exe -j
 ```
 
+The exe and dll will be in ```LightGBM/``` folder.
+
 ## Linux
 
-LightGBM use ***cmake*** to build in Unix. Run following: 
+LightGBM use ***cmake*** to build. Run following: 
 
 ```
 git clone --recursive https://github.com/Microsoft/LightGBM ; cd LightGBM
@@ -78,23 +74,11 @@ If you need to run a parallel learning application with high performance communi
 
 ### Windows
 
-You need to install [MSMPI](https://www.microsoft.com/en-us/download/details.aspx?id=49926) first. Both ```msmpisdk.msi``` and ```MSMpiSetup.exe``` are needed.
+1. You need to install [MSMPI](https://www.microsoft.com/en-us/download/details.aspx?id=49926) first. Both ```msmpisdk.msi``` and ```MSMpiSetup.exe``` are needed.
 
-Then:
+3. Install [git for windows](https://git-scm.com/download/win), [cmake](https://cmake.org/) and [MS Build](https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017) (Not need the MSbuild if you already install *Visual Studio*).
 
-#### Visual Studio
-
-1. Clone or download latest source code.
-2. Open ```./windows/LightGBM.sln``` by Visual Studio.
-3. Set configuration to ```Release_mpi``` and ```x64``` .
-4. Press ```Ctrl+Shift+B``` to build.
-5. The exe file is in ```./windows/x64/Release_mpi/``` after built.
-
-#### cmake with MSBuild
-
-1. Install [git for windows](https://git-scm.com/download/win), [cmake](https://cmake.org/) and [MS Build](https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017) (Not need the MSbuild if you already install *Visual Studio*).
-
-2. Run following command:
+3. Run following command:
 
 ```
 git clone --recursive https://github.com/Microsoft/LightGBM
@@ -106,6 +90,7 @@ cmake --build . --target ALL_BUILD --config Release
 ```
 
 Note: Doesn't support build mpi version by MinGW due to the miss of MPI Library in MinGW.
+
 ### Linux
 
 You need to install [OpenMPI](https://www.open-mpi.org/) first.
