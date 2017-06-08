@@ -47,7 +47,8 @@ cmake ..
 make -j 
 ```
 
-Note: glibc >= 2.14 requirement.
+
+Note: 1. glibc >= 2.14 requirement. 2. You can try using ```make``` instead, if ```make -j``` freezes your computer.  
 
 ## OSX
 
@@ -103,6 +104,8 @@ mkdir build ; cd build
 cmake -DUSE_MPI=ON .. 
 make -j 
 ```
+
+Note: 1. glibc >= 2.14 requirement. 2. You can try using ```make``` instead, if ```make -j``` freezes your computer.
 
 ### OSX
 
