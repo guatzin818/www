@@ -31,7 +31,7 @@ cd LightGBM
 mkdir build
 cd build
 cmake -G "MinGW Makefiles" ..
-mingw32-make.exe -j
+mingw32-make.exe -j4
 ```
 
 The exe and dll will be in ```LightGBM/``` folder.
@@ -44,7 +44,7 @@ LightGBM use ***cmake*** to build. Run following:
 git clone --recursive https://github.com/Microsoft/LightGBM ; cd LightGBM
 mkdir build ; cd build
 cmake .. 
-make -j 
+make -j4
 ```
 
 
@@ -64,7 +64,7 @@ brew install gcc --without-multilib
 git clone --recursive https://github.com/Microsoft/LightGBM ; cd LightGBM
 mkdir build ; cd build
 cmake .. 
-make -j 
+make -j4 
 ```
 
 ## Build MPI Version
@@ -102,7 +102,7 @@ Then run following:
 git clone --recursive https://github.com/Microsoft/LightGBM ; cd LightGBM
 mkdir build ; cd build
 cmake -DUSE_MPI=ON .. 
-make -j 
+make -j4 
 ```
 
 Note: 1. glibc >= 2.14 requirement. 2. You can try using ```make``` instead, if ```make -j``` freezes your computer.
@@ -119,7 +119,7 @@ brew install gcc --without-multilib
 git clone --recursive https://github.com/Microsoft/LightGBM ; cd LightGBM
 mkdir build ; cd build
 cmake -DCMAKE_CXX_COMPILER=g++-6 -DCMAKE_C_COMPILER=gcc-6 -DUSE_MPI=ON .. 
-make -j 
+make -j4 
 ```
 
 ## With GPU support
@@ -157,7 +157,7 @@ Then run `cmake` and `make`:
 cd LightGBM
 mkdir build ; cd build
 cmake -DUSE_GPU=1 .. 
-make -j 
+make -j4 
 ```
 
 ### Windows
