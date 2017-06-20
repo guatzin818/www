@@ -1,4 +1,6 @@
-LightGBM is implemented by standard C++ 11. It doesn't need additional packages to build.
+Here is the guide for the build of CLI version.
+
+For the build of python-package and R-package, please refer to [python-package build](https://github.com/Microsoft/LightGBM/tree/master/python-package) and [R-package build](https://github.com/Microsoft/LightGBM/tree/master/R-package) respectively.
 
 ## Windows
 
@@ -6,7 +8,7 @@ LightGBM can use Visual Studio, MSBuild with CMake or MinGW to build in Windows.
 
 ### Visual Studio (Or MSBuild)
 
-1. Install [git for windows](https://git-scm.com/download/win), [cmake](https://cmake.org/) and [MS Build](https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017) (Not need the MSbuild if you already install *Visual Studio*).
+1. Install [git for windows](https://git-scm.com/download/win), [cmake](https://cmake.org/) and [MS Build](https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017) (MSbuild is not needed if *Visual Studio* is installed).
 
 2. Run following command:
 
@@ -19,7 +21,7 @@ cmake -DCMAKE_GENERATOR_PLATFORM=x64 ..
 cmake --build . --target ALL_BUILD --config Release
 ```
 
-The exe and dll will be in ```LightGBM/Release``` folder.
+The exe and DLL will be in ```LightGBM/Release``` folder.
 
 ### MinGW64
 
@@ -34,7 +36,7 @@ cmake -G "MinGW Makefiles" ..
 mingw32-make.exe -j4
 ```
 
-The exe and dll will be in ```LightGBM/``` folder.
+The exe and DLL will be in ```LightGBM/``` folder.
 
 ## Linux
 
@@ -47,8 +49,7 @@ cmake ..
 make -j4
 ```
 
-
-Note: 1. glibc >= 2.14 requirement. 2. You can try using ```make``` instead, if ```make -j``` freezes your computer.  
+Note: glibc >= 2.14 requirement.
 
 ## OSX
 
@@ -90,13 +91,13 @@ cmake -DCMAKE_GENERATOR_PLATFORM=x64 -DUSE_MPI=ON ..
 cmake --build . --target ALL_BUILD --config Release
 ```
 
-Note: Doesn't support build mpi version by MinGW due to the miss of MPI Library in MinGW.
+Note: Build mpi version by MinGW is not supported due to the miss of MPI Library in MinGW.
 
 ### Linux
 
 You need to install [OpenMPI](https://www.open-mpi.org/) first.
 
-Then run following:
+Then run:
 
 ```
 git clone --recursive https://github.com/Microsoft/LightGBM ; cd LightGBM
@@ -105,8 +106,7 @@ cmake -DUSE_MPI=ON ..
 make -j4 
 ```
 
-Note: 1. glibc >= 2.14 requirement. 2. You can try using ```make``` instead, if ```make -j``` freezes your computer.
-
+Note: glibc >= 2.14 requirement.
 ### OSX
 
 
