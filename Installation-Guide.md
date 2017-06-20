@@ -55,13 +55,15 @@ Note: glibc >= 2.14 requirement.
 
 LightGBM depends on OpenMP for compiling, which isn't supported by Apple Clang.
 
-Please use gcc/g++ instead. 
-
-Run following: 
+Please install gcc/g++ by using following command:
 
 ```
 brew install cmake
 brew install gcc --without-multilib
+```
+
+Then install LightGBM:
+```
 git clone --recursive https://github.com/Microsoft/LightGBM ; cd LightGBM
 mkdir build ; cd build
 cmake .. 
@@ -107,18 +109,21 @@ make -j4
 ```
 
 Note: glibc >= 2.14 requirement.
+
 ### OSX
 
-
-Run following: 
-
+Please install gcc and openmpi first
 ```
 brew install openmpi 
 brew install cmake
 brew install gcc --without-multilib
+```
+
+Then run:
+```
 git clone --recursive https://github.com/Microsoft/LightGBM ; cd LightGBM
 mkdir build ; cd build
-cmake -DCMAKE_CXX_COMPILER=g++-6 -DCMAKE_C_COMPILER=gcc-6 -DUSE_MPI=ON .. 
+cmake -DUSE_MPI=ON .. 
 make -j4 
 ```
 
