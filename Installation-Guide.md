@@ -8,7 +8,7 @@ LightGBM can use Visual Studio, MSBuild with CMake or MinGW to build in Windows.
 
 ### Visual Studio (Or MSBuild)
 
-1. Install [git for windows](https://git-scm.com/download/win), [cmake](https://cmake.org/) and [MS Build](https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017) (MSbuild is not needed if *Visual Studio* is installed).
+1. Install [git for windows](https://git-scm.com/download/win), [cmake](https://cmake.org/) (3.8 or higher) and [MS Build](https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017) (MSbuild is not needed if *Visual Studio* is installed).
 
 2. Run following command:
 
@@ -80,7 +80,7 @@ If you need to run a parallel learning application with high performance communi
 
 1. You need to install [MSMPI](https://www.microsoft.com/en-us/download/details.aspx?id=49926) first. Both ```msmpisdk.msi``` and ```MSMpiSetup.exe``` are needed.
 
-3. Install [git for windows](https://git-scm.com/download/win), [cmake](https://cmake.org/) and [MS Build](https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017) (Not need the MSbuild if you already install *Visual Studio*).
+3. Install [git for windows](https://git-scm.com/download/win), [cmake](https://cmake.org/) (3.8 or higher)  and [MS Build](https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017) (Not need the MSbuild if you already install *Visual Studio*).
 
 3. Run following command:
 
@@ -172,13 +172,15 @@ If you use MinGW in windows, the build procedure are similar to the build in Lin
 
 Following procedure is for the MSVC(Microsoft Visual C++) build. 
 
-1. Install OpenCL for windows. The installation depend on the brand(Nvidia, AMD, Intel) of your GPU card. 
+1. Install [git for windows](https://git-scm.com/download/win), [cmake](https://cmake.org/) (3.8 or higher) and [MS Build](https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2017) (MSbuild is not needed if *Visual Studio* is installed).
+
+2. Install OpenCL for windows. The installation depend on the brand(Nvidia, AMD, Intel) of your GPU card. 
 
     * For running on Intel, get Intel SDK for OpenCL: https://software.intel.com/en-us/articles/opencl-drivers
     * For running on AMD, get AMD APP SDK: http://developer.amd.com/tools-and-sdks/opencl-zone/amd-accelerated-parallel-processing-app-sdk/
     * For running on NVIDIA, get CUDA Toolkit: https://developer.nvidia.com/cuda-downloads
 
-2. Install Boost Binary: https://sourceforge.net/projects/boost/files/boost-binaries/1.64.0/ .
+3. Install Boost Binary: https://sourceforge.net/projects/boost/files/boost-binaries/1.64.0/ .
    (Note: match your Visual C++ version.  Visual studio 2013 -> msvc-12.0-64.exe, 2015-> msvc-14.0-64.exe, 2017 -> msvc-14.1-64.exe). 
 3. run following in the command line:
 ```
