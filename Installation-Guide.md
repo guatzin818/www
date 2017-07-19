@@ -37,6 +37,7 @@ mingw32-make.exe -j4
 ```
 
 The exe and DLL will be in ```LightGBM/``` folder.
+Note: you may need to run the ```cmake -G "MinGW Makefiles" ..``` one more time if met ```sh.exe was found in your PATH``` error .
 
 ## Linux
 
