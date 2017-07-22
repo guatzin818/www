@@ -66,8 +66,7 @@ brew install gcc --without-multilib
 Then install LightGBM:
 ```
 git clone --recursive https://github.com/Microsoft/LightGBM ; cd LightGBM
-export CXX=g++-7
-export CC=gcc-7
+export CXX=g++-7 CC=gcc-7
 mkdir build ; cd build
 cmake .. 
 make -j4 
@@ -125,8 +124,7 @@ brew install gcc --without-multilib
 Then run:
 ```
 git clone --recursive https://github.com/Microsoft/LightGBM ; cd LightGBM
-export CXX=g++-7
-export CC=gcc-7
+export CXX=g++-7 CC=gcc-7
 mkdir build ; cd build
 cmake -DUSE_MPI=ON .. 
 make -j4 
