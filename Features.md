@@ -25,7 +25,7 @@ LightGBM uses the histogram based algorithms<sup>[3][4][5]</sup>, which bucketin
 
 ## Optimization in accuracy
 
-### Leave-wise(best first) tree growth
+### Leaf-wise (best-first) tree growth
 Most decision tree learning algorithms grow tree by level(depth)-wise, like the following image:
 
 [[image/level_wise.png]]
@@ -108,7 +108,7 @@ Above all, we reduce communication cost to O(0.5 * #feature* #bin) for data para
 
 Voting parallel further reduce the communication cost in Data parallel to constant cost. It uses two stage voting to reduce the communication cost of feature Histograms. For more details, please refer to [this paper](http://papers.nips.cc/paper/6381-a-communication-efficient-parallel-algorithm-for-decision-tree). 
 
-## GPU support
+## GPU support<sup>[8]</sup>
 
 Thanks @huanzhang12 for contributing this feature. Please visit following link to get more details.
 
@@ -151,15 +151,10 @@ For more details, please refer to [Configuration](https://github.com/Microsoft/L
 * Validation metric output during training
 * Multi validation data
 * Multi metrics
-* Early stopping
+* Early stopping (both training and prediction)
 * Prediction for leaf index
 
 For more details, please refer to [Configuration](https://github.com/Microsoft/LightGBM/wiki/Configuration).
-
-## Future Plan
-
-* More languages (e.g. Python, R) support
-* More platforms (e.g. Hadoop, Spark) support
 
 ## References
 [1] Mehta, Manish, Rakesh Agrawal, and Jorma Rissanen. "SLIQ: A fast scalable classifier for data mining." International Conference on Extending Database Technology. Springer Berlin Heidelberg, 1996.
@@ -175,3 +170,5 @@ For more details, please refer to [Configuration](https://github.com/Microsoft/L
 [6] Thakur, Rajeev, Rolf Rabenseifner, and William Gropp. "Optimization of collective communication operations in MPICH." International Journal of High Performance Computing Applications 19.1 (2005): 49-66.
 
 [7] Shi, Haijian. Best-first decision tree learning. Diss. The University of Waikato, 2007.
+
+[8] Huan Zhang, Si Si and Cho-Jui Hsieh. GPU Acceleration for Large-scale Tree Boosting. arXiv:1706.08359, 2017.
