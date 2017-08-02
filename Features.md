@@ -25,6 +25,7 @@ LightGBM uses the histogram based algorithms<sup>[3][4][5]</sup>, which bucketin
 
 ## Optimization in accuracy
 
+### Leave-wise(best first) tree growth
 Most decision tree learning algorithms grow tree by level(depth)-wise, like the following image:
 
 [[image/level_wise.png]]
@@ -35,6 +36,14 @@ When growing same #leaf, Leaf-wise algorithm can reduce more loss than level-wis
 Leaf-wise may cause over-fitting when #data is small. So, LightGBM can use an additional parameter ```max_depth``` to limit depth of tree and avoid over-fitting (Tree still grows by leaf-wise). 
 
 [[image/leaf_wise.png]]
+
+### Optimal split for Categorical Features
+
+We often convert the categorical features into one-hot coding. However, it is not a good solution in tree learner. The reason is, for the high cardinality categorical features, it will grow the very unbalance tree, and needs to grow very deep to achieve the good accuracy.
+
+Actually, the optimal solution is partitioning the categorical feature into 2 subsets, and there are `2^(k-1) - 1` possible partitions. But there is a efficient solution for regression tree (refer to http://www.jstor.org/stable/2281952 ). It needs about `klogk` to find the optimal partition.
+
+The basic idea is reordering the categories according to the relevance of training target. More specifically, reordering the histogram (of categorical feature) according to it's accumulate values (sum_gradient/sum_hessian), then find the best split on the sorted histogram.
 
 ## Optimization in network communication
 
