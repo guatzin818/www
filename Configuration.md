@@ -1,3 +1,3 @@
-* [**Parameters**](https://github.com/Microsoft/LightGBM/blob/master/docs/Parameters.md) : Parameters in command line version LightGBM
-* [Parameters Tuning](https://github.com/Microsoft/LightGBM/blob/master/docs/Parameters-tuning.md)
-* [**Python-API**](https://github.com/Microsoft/LightGBM/blob/master/docs/Python-API.md) : Exposed interfaces of python-package
+* [**Parameters**](https://lightgbm.readthedocs.io/en/latest/Parameters.html) : Parameters in CLI version LightGBM.
+* [**Parameters Tuning**](https://lightgbm.readthedocs.io/en/latest/Parameters-tuning.html) : Parameters tuning guide.
+* [**Python-API**](https://lightgbm.readthedocs.io/en/latest/Python-API.html) : Exposed interfaces of LightGBM Python-package.
