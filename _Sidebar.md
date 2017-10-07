@@ -27,6 +27,4 @@
 * [Features](https://github.com/Microsoft/LightGBM/wiki/Features)
 * [Configuration](https://github.com/Microsoft/LightGBM/wiki/Configuration)
 * [Experiments](https://github.com/Microsoft/LightGBM/wiki/Experiments)
-  * [Comparison Experiment](https://github.com/Microsoft/LightGBM/wiki/Experiments#comparison-experiment)
-  * [Parallel Experiment](https://github.com/Microsoft/LightGBM/wiki/Experiments#parallel-experiment)
 
